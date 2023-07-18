@@ -7,3 +7,4 @@ Our app provides services like student management, teacher calendar management, 
 * Spring Boot 3
 * PostgreSQL
 * MyBatis
+* Liquibase
