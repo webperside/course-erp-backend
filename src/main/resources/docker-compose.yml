@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  db:
+    container_name: course-erp-db
+    image: postgres:14.5
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - ../../docker-volumes/course-erp-db:/var/lib/postgresql/data
