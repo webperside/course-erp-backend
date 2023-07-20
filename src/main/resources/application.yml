@@ -1,1 +1,11 @@
+spring:
+  profiles:
+    active: local
+  liquibase:
+    enabled: true
+    change-log: classpath:migrations/changelog-master.xml
 
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mappers/*.xml
+  type-aliases-package: com.webperside.courseerpbackend.models.mybatis
