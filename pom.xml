@@ -17,6 +17,7 @@
 		<java.version>17</java.version>
 		<org.mybatis.spring.boot.mybatis-spring-boot-starter.version>3.0.2</org.mybatis.spring.boot.mybatis-spring-boot-starter.version>
 		<org.springdoc.springdoc-openapi-starter-webmvc-ui.version>2.0.3</org.springdoc.springdoc-openapi-starter-webmvc-ui.version>
+		<io.jsonwebtoken.jjwt.version>0.11.5</io.jsonwebtoken.jjwt.version>
 	</properties>
 	<dependencies>
 <!--		<dependency>-->
@@ -67,6 +68,24 @@
 			<version>3.0.2</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- JWT Dependencies -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${io.jsonwebtoken.jjwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${io.jsonwebtoken.jjwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${io.jsonwebtoken.jjwt.version}</version>
+		</dependency>
+
 <!--		<dependency>-->
 <!--			<groupId>org.springframework.security</groupId>-->
 <!--			<artifactId>spring-security-test</artifactId>-->
