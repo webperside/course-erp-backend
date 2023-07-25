@@ -20,6 +20,10 @@ public class CourseErpBackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		// /students - POST - INSERT - STUDENT_CREATE
+		// /students/1 - DELETE - DELETE - STUDENT_DELETE
+
 //		User user = User.builder()
 //				.name("Hamid")
 //				.surname("Sultanzadeh mence olmayacaq")
