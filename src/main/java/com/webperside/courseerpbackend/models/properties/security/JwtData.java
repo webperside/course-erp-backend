@@ -14,7 +14,7 @@ public class JwtData {
     Integer refreshTokenValidityTime;
 
     public Long getRefreshTokenValidityTime(boolean rememberMe) {
-        return refreshTokenValidityTime * (rememberMe ? 30L : 1L    );
+        return refreshTokenValidityTime * (rememberMe ? 30L : 1L);
     }
 
 }

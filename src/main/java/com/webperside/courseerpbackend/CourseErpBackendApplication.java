@@ -35,11 +35,17 @@ public class CourseErpBackendApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 
-		User user = User.builder().email("email@email.com").build();
-		user.setId(1L);
-
-		System.out.println(accessTokenManager.generate(user));
-
+//		User user = User.builder().email("email@email.com").build();
+//		user.setId(1L);
+//
+//		final String token = accessTokenManager.generate(user);
+//
+//		System.out.println(token);
+//
+//		System.out.println(
+//				accessTokenManager.read(token).get("email", String.class)
+//		);
+//
 
 //		System.out.println(securityProperties);
 
