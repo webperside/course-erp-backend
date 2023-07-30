@@ -6,5 +6,6 @@
 
     <include file="migrations/1.0/1.0.0-user-table.xml"/>
     <include file="migrations/1.0/1.0.1-role-tables.xml"/>
+    <include file="migrations/1.0/1.0.2-alter-role-table.xml"/>
 
 </databaseChangeLog>

@@ -7,7 +7,11 @@ import com.webperside.courseerpbackend.models.payload.auth.LoginPayload;
 import com.webperside.courseerpbackend.models.response.auth.LoginResponse;
 import com.webperside.courseerpbackend.services.security.AccessTokenManager;
 import com.webperside.courseerpbackend.services.security.RefreshTokenManager;
+import com.webperside.courseerpbackend.services.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +29,10 @@ public class AuthController {
 
     @PostMapping("/login")
     public BaseResponse<LoginResponse> login(@RequestBody LoginPayload payload) {
-        User user = User.builder().email("email@email.com").build();
-        user.setId(1L);
+
+        authenticate(payload);
+
+        User user = userService.getByEmail(payload.getEmail());
 
         return BaseResponse.success(
                 LoginResponse.builder()
@@ -36,6 +42,21 @@ public class AuthController {
                         ))
                         .build()
         );
+    }
+
+
+    // temp
+    private final AuthenticationManager authenticationManager;
+    private final UserService userService;
+
+    private void authenticate(LoginPayload request) {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+            );
+        } catch (AuthenticationException e) {
+            throw new RuntimeException("Exception");
+        }
     }
 
     /*

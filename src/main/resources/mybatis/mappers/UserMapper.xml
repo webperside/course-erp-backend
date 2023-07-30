@@ -7,5 +7,24 @@
         VALUES (#{name}, #{surname}, #{status}, #{roleId}, #{email}, #{phoneNumber}, #{password})
     </insert>
 
+    <select id="findByEmail" resultType="User">
+        SELECT
+            <include refid="userBaseColumns"/>
+        FROM users u
+        WHERE u.email = #{email}
+            AND u.is_deleted = false
+    </select>
+
+    <sql id="userBaseColumns">
+        u.id,
+        u.name,
+        u.surname,
+        u.status,
+        u.role_id,
+        u.email,
+        u.phone_number,
+        u.password,
+        u.is_deleted
+    </sql>
 
 </mapper>
