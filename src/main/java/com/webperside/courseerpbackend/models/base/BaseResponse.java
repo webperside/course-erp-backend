@@ -24,4 +24,8 @@ public class BaseResponse <T> {
                 .build();
     }
 
+    public static <T> BaseResponse<T> success() {
+        return success(null);
+    }
+
 }
