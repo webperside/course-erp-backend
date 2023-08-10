@@ -26,4 +26,9 @@ public class UserServiceImpl implements UserService {
                 () -> BaseException.notFound(User.class.getSimpleName(), "email", email)
         );
     }
+
+    @Override
+    public boolean checkByEmail(String email) {
+        return userRepository.findByEmail(email).isPresent();
+    }
 }

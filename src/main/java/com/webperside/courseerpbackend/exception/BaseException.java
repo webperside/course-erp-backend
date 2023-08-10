@@ -29,8 +29,12 @@ public class BaseException extends RuntimeException {
         return responseMessage.message();
     }
 
+    public static BaseException of(ResponseMessages responseMessage) {
+        return BaseException.builder().responseMessage(responseMessage).build();
+    }
+
     public static BaseException unexpected() {
-        return BaseException.builder().responseMessage(UNEXPECTED).build();
+        return of(UNEXPECTED);
     }
 
     public static BaseException notFound(String target, String field, String value) {

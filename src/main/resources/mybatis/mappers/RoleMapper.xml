@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.webperside.courseerpbackend.repository.RoleRepository">
+
+<!--    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">-->
+<!--        INSERT INTO users (name, surname, status, role_id, email, phone_number, password)-->
+<!--        VALUES (#{name}, #{surname}, #{status}, #{roleId}, #{email}, #{phoneNumber}, #{password})-->
+<!--    </insert>-->
+
+    <select id="findByName" resultType="Role">
+        SELECT
+            <include refid="roleBaseColumns"/>
+        FROM roles r
+        WHERE r.name = #{name}
+            AND r.is_deleted = false
+    </select>
+
+    <sql id="roleBaseColumns">
+        r.id,
+        r.name,
+        r.description,
+        r.is_deleted
+    </sql>
+
+</mapper>

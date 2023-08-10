@@ -9,7 +9,8 @@ import org.springframework.http.HttpStatus;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public enum ErrorResponseMessages implements ResponseMessages {
     UNEXPECTED("unexpected", "Unexpected error", HttpStatus.INTERNAL_SERVER_ERROR),
-    NOT_FOUND("not_found_%s", "%s can't find %s", HttpStatus.NOT_FOUND);
+    NOT_FOUND("not_found_%s", "%s can't find %s", HttpStatus.NOT_FOUND),
+    EMAIL_ALREADY_REGISTERED("email_already_registered", "Email already registered", HttpStatus.CONFLICT);
 
 
     String key;

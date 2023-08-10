@@ -7,5 +7,7 @@
     <include file="migrations/1.0/1.0.0-user-table.xml"/>
     <include file="migrations/1.0/1.0.1-role-tables.xml"/>
     <include file="migrations/1.0/1.0.2-alter-role-table.xml"/>
+    <include file="migrations/1.0/1.0.3-course-table.xml"/>
+    <include file="migrations/1.0/1.0.4-insert-default-role.xml"/>
 
 </databaseChangeLog>

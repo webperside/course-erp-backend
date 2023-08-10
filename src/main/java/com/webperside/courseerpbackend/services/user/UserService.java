@@ -8,4 +8,5 @@ public interface UserService {
 
     User getByEmail(String email);
 
+    boolean checkByEmail(String email);
 }

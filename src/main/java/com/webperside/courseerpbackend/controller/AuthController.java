@@ -1,8 +1,10 @@
 package com.webperside.courseerpbackend.controller;
 
 import com.webperside.courseerpbackend.models.base.BaseResponse;
+import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
 import com.webperside.courseerpbackend.models.payload.auth.LoginPayload;
 import com.webperside.courseerpbackend.models.payload.auth.RefreshTokenPayload;
+import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
 import com.webperside.courseerpbackend.models.response.auth.LoginResponse;
 import com.webperside.courseerpbackend.services.security.AuthBusinessService;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +33,13 @@ public class AuthController {
     @PostMapping("/logout")
     public BaseResponse<Void> logout() {
         authBusinessService.logout();
+        return BaseResponse.success();
+    }
+
+    @PostMapping("/sign-up")
+    public BaseResponse<Void> signUp(@RequestBody SignUpPayload payload) {
+//        System.out.println(UserEntityMapper.INSTANCE.fromSignUpPayloadToUser(payload, "123123",1L));
+        authBusinessService.signUp(payload);
         return BaseResponse.success();
     }
 
