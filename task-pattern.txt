@@ -1,0 +1,12 @@
+1. Model
+2. Mapper (XML, Repository)
+3. Service
+4. BusinessService
+5. Controller
+
+// subjects
+1. Subject
+2. SubjectMapper.xml, SubjectRepository
+3. SubjectService
+4. SubjectBusinessService
+5. SubjectController

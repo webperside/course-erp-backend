@@ -2,7 +2,9 @@ package com.webperside.courseerpbackend;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webperside.courseerpbackend.models.enums.user.UserStatus;
+import com.webperside.courseerpbackend.models.mappers.CourseEntityMapper;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
+import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
 import com.webperside.courseerpbackend.models.properties.security.SecurityProperties;
 import com.webperside.courseerpbackend.repository.UserRepository;
 import com.webperside.courseerpbackend.services.security.AccessTokenManager;

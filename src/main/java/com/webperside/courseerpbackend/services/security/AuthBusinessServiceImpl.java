@@ -2,13 +2,19 @@ package com.webperside.courseerpbackend.services.security;
 
 import com.webperside.courseerpbackend.exception.BaseException;
 import com.webperside.courseerpbackend.models.dto.RefreshTokenDto;
+import com.webperside.courseerpbackend.models.enums.branch.BranchStatus;
+import com.webperside.courseerpbackend.models.mappers.CourseEntityMapper;
 import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
+import com.webperside.courseerpbackend.models.mybatis.branch.Branch;
+import com.webperside.courseerpbackend.models.mybatis.course.Course;
 import com.webperside.courseerpbackend.models.mybatis.role.Role;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.models.payload.auth.LoginPayload;
 import com.webperside.courseerpbackend.models.payload.auth.RefreshTokenPayload;
 import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
 import com.webperside.courseerpbackend.models.response.auth.LoginResponse;
+import com.webperside.courseerpbackend.services.branch.BranchService;
+import com.webperside.courseerpbackend.services.course.CourseService;
 import com.webperside.courseerpbackend.services.role.RoleService;
 import com.webperside.courseerpbackend.services.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +35,8 @@ import static com.webperside.courseerpbackend.models.enums.response.ErrorRespons
 @Slf4j
 public class AuthBusinessServiceImpl implements AuthBusinessService {
 
+    private final static String BRANCH_NAME_DEFAULT_PATTERN = "%s Default Branch";
+
     private final AuthenticationManager authenticationManager;
     private final AccessTokenManager accessTokenManager;
     private final RefreshTokenManager refreshTokenManager;
@@ -36,6 +44,8 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder passwordEncoder;
     private final RoleService roleService;
+    private final CourseService courseService;
+    private final BranchService branchService;
 
     @Override
     public LoginResponse login(LoginPayload payload) {
@@ -68,18 +78,28 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
 
         Role defaultRole = roleService.getDefaultRole();
 
+        // Stage 1: User insert
         User user = UserEntityMapper.INSTANCE.fromSignUpPayloadToUser(
                 payload,
                 passwordEncoder.encode(payload.getPassword()),
                 defaultRole.getId()
         );
-
         userService.insert(user);
 
+        // Stage 2: Course insert
+        Course course = CourseEntityMapper.INSTANCE.fromSignUpPayload(payload);
+        courseService.insert(course);
+
+        // Stage 3: Default branch insert
+        Branch branch = populateDefaultBranchData(payload, course);
+        branchService.insert(branch);
+
+
         /*
-        1. course insert
-        2. default branch insert
-        3. employee insert
+        1. course insert +
+        2. default branch insert +
+        3. employee insert - refactor
+        3.1 employee-branch relation
         4. sending otp (email)
         5. verification otp
         6. login - if user is not confirmed, can't login system
@@ -120,6 +140,16 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
                                 .rememberMe(rememberMe)
                                 .build()
                 ))
+                .build();
+    }
+
+    private Branch populateDefaultBranchData(SignUpPayload payload, Course course) {
+        // TODO: customize field setters
+        return Branch.builder()
+                .name(BRANCH_NAME_DEFAULT_PATTERN.formatted(payload.getCourseName()))
+                .status(BranchStatus.ACTIVE)
+                .address(payload.getAddress())
+                .courseId(course.getId())
                 .build();
     }
 }

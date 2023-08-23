@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.webperside.courseerpbackend.repository.BranchRepository">
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO branches (name, status, address, lat, lon, course_id)
+        VALUES (#{name}, #{status}, #{address}, #{lat}, #{lon}, #{courseId})
+    </insert>
+
+    <sql id="branchBaseColumns">
+        b.id,
+        b.name,
+        b.status,
+        b.address,
+        b.lat,
+        b.lon,
+        b.course_id,
+        b.is_deleted
+    </sql>
+
+</mapper>
