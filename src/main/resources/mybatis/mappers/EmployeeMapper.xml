@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.webperside.courseerpbackend.repository.EmployeeRepository">
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO employees (user_id)
+        VALUES (#{userId})
+    </insert>
+
+    <sql id="employeeBaseColumns">
+        e.id,
+        e.user_id,
+        e.is_deleted
+    </sql>
+
+</mapper>

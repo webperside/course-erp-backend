@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="employee-branches-table" author="hamidsultanzadeh">
+        <createTable tableName="employee_branches">
+            <column name="branch_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employee_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="BOOLEAN" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint  baseColumnNames="branch_id"
+                                  baseTableName="employee_branches"
+                                  constraintName="fk_employee_branches_branch_id"
+                                  deferrable="false"
+                                  initiallyDeferred="false"
+                                  onDelete="NO ACTION"
+                                  onUpdate="NO ACTION"
+                                  referencedColumnNames="id"
+                                  referencedTableName="branches"
+                                  validate="true"/>
+        <addForeignKeyConstraint  baseColumnNames="employee_id"
+                                  baseTableName="employee_branches"
+                                  constraintName="fk_employee_branches_employee_id"
+                                  deferrable="false"
+                                  initiallyDeferred="false"
+                                  onDelete="NO ACTION"
+                                  onUpdate="NO ACTION"
+                                  referencedColumnNames="id"
+                                  referencedTableName="employees"
+                                  validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -11,5 +11,7 @@
     <include file="migrations/1.0/1.0.4-insert-default-role.xml"/>
     <include file="migrations/1.0/1.0.5-countries-tables.xml"/>
     <include file="migrations/1.0/1.0.6-students-table.xml"/>
+    <include file="migrations/1.0/1.0.7-alter-employee-table.xml"/>
+    <include file="migrations/1.0/1.0.8-employee-branches-table.xml"/>
 
 </databaseChangeLog>
