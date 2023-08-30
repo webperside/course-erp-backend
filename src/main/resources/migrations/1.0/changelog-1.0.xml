@@ -9,6 +9,7 @@
     <include file="migrations/1.0/1.0.2-alter-role-table.xml"/>
     <include file="migrations/1.0/1.0.3-course-table.xml"/>
     <include file="migrations/1.0/1.0.4-insert-default-role.xml"/>
+    <include file="migrations/1.0/1.0.5-countries-tables.xml"/>
     <include file="migrations/1.0/1.0.6-students-table.xml"/>
 
 </databaseChangeLog>
