@@ -10,7 +10,7 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="user_id" type="VARCHAR(50)">
+            <column name="user_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
             <column name="is_deleted" type="BOOLEAN" defaultValue="false">
@@ -19,7 +19,7 @@
         </createTable>
         <addForeignKeyConstraint  baseColumnNames="user_id"
                                   baseTableName="students"
-                                  constraintName="fk_students_owner_id"
+                                  constraintName="fk_students_user_id"
                                   deferrable="false"
                                   initiallyDeferred="false"
                                   onDelete="NO ACTION"
