@@ -1,5 +1,7 @@
 package com.webperside.courseerpbackend.services.user;
 
+import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.models.security.LoggedInUserDetails;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +23,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+        // todo: Fix this method. should throw username not found exception
         User user = userService.getByEmail(username);
+
+        if (!user.isActive()) {
+            throw BaseException.of(ErrorResponseMessages.USER_NOT_ACTIVE);
+        }
 
         return new LoggedInUserDetails(
                 user.getEmail(), user.getPassword(), new ArrayList<>()

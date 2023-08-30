@@ -7,6 +7,7 @@ import com.webperside.courseerpbackend.models.mappers.CourseEntityMapper;
 import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
 import com.webperside.courseerpbackend.models.mybatis.branch.Branch;
 import com.webperside.courseerpbackend.models.mybatis.course.Course;
+import com.webperside.courseerpbackend.models.mybatis.employee.Employee;
 import com.webperside.courseerpbackend.models.mybatis.role.Role;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.models.payload.auth.LoginPayload;
@@ -15,6 +16,7 @@ import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
 import com.webperside.courseerpbackend.models.response.auth.LoginResponse;
 import com.webperside.courseerpbackend.services.branch.BranchService;
 import com.webperside.courseerpbackend.services.course.CourseService;
+import com.webperside.courseerpbackend.services.employee.EmployeeService;
 import com.webperside.courseerpbackend.services.role.RoleService;
 import com.webperside.courseerpbackend.services.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +48,7 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
     private final RoleService roleService;
     private final CourseService courseService;
     private final BranchService branchService;
+    private final EmployeeService employeeService;
 
     @Override
     public LoginResponse login(LoginPayload payload) {
@@ -91,17 +94,18 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
         courseService.insert(course);
 
         // Stage 3: Default branch insert
-        Branch branch = populateDefaultBranchData(payload, course);
-        branchService.insert(branch);
+        branchService.insert(populateDefaultBranchData(payload, course));
 
+        // Stage 4: Employee insert
+        employeeService.insert(Employee.builder().userId(user.getId()).build());
 
         /*
         1. course insert +
         2. default branch insert +
-        3. employee insert - refactor
-        3.1 employee-branch relation
-        4. sending otp (email)
-        5. verification otp
+        3. employee insert - refactor +
+        3.1 employee-branch relation +
+        4. sending otp (email) +
+        5. verification otp +
         6. login - if user is not confirmed, can't login system
          */
 
@@ -124,8 +128,9 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
                     new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
             );
         } catch (AuthenticationException e) {
-            // todo: Implement custom exception model
-            throw new RuntimeException("Exception");
+            throw e.getCause() instanceof BaseException ?
+                    (BaseException) e.getCause() :
+                    BaseException.unexpected();
         }
     }
 
