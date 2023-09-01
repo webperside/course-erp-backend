@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="subjects-tables" author="farhadnajafov">
+        <createTable tableName="subjects">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="course_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="BOOLEAN" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint  baseColumnNames="course_id"
+                                  baseTableName="subjects"
+                                  constraintName="fk_subjects_course_id"
+                                  deferrable="false"
+                                  initiallyDeferred="false"
+                                  onDelete="NO ACTION"
+                                  onUpdate="NO ACTION"
+                                  referencedColumnNames="id"
+                                  referencedTableName="courses"
+                                  validate="true"/>
+
+        <addForeignKeyConstraint  baseColumnNames="language_id"
+                                  baseTableName="subjects"
+                                  constraintName="fk_subjects_language_id"
+                                  deferrable="false"
+                                  initiallyDeferred="false"
+                                  onDelete="NO ACTION"
+                                  onUpdate="NO ACTION"
+                                  referencedColumnNames="id"
+                                  referencedTableName="languages"
+                                  validate="true"/>
+    </changeSet>
+
+
+
+</databaseChangeLog>
