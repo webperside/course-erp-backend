@@ -18,12 +18,12 @@
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO subjects s (name,course_id,language_id)
-        VALUES (#{name}, #{course_id}, #{language_id})
+        VALUES (#{name}, #{courseId}, #{languageId})
     </insert>
 
     <update id="update" parameterType="Subject">
         UPDATE subjects s
-        SET name = #{name}, course_id=#{course_id}, language_id=#{language_id}
+        SET name = #{name}, course_id=#{courseId}, language_id=#{languageId}
         WHERE s.id = #{id};
     </update>
 
