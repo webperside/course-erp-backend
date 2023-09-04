@@ -13,6 +13,6 @@ import lombok.experimental.FieldDefaults;
 public class Subject extends BaseEntity {
 
     String name;
-    Long course_id;
-    Long language_id;
+    Long courseId;
+    Long languageId;
 }
