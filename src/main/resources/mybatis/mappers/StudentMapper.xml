@@ -22,15 +22,15 @@
         WHERE s.is_deleted = false
     </select>
 
-    <sql id="studentBaseColumns">
-        s.id,
-        s.user_id,
-        s.is_deleted
-    </sql>
-
     <update id="update" parameterType="Student">
         UPDATE students s
         SET user_id = #{userId}
         WHERE s.id = #{id};
     </update>
+
+    <sql id="studentBaseColumns">
+        s.id,
+        s.user_id,
+        s.is_deleted
+    </sql>
 </mapper>
