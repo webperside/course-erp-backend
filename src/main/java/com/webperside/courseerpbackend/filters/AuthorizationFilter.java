@@ -1,13 +1,16 @@
 package com.webperside.courseerpbackend.filters;
 
+import com.webperside.courseerpbackend.exception.BaseException;
 import com.webperside.courseerpbackend.services.security.AccessTokenManager;
 import com.webperside.courseerpbackend.services.security.AuthBusinessService;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +27,7 @@ import static com.webperside.courseerpbackend.constants.TokenConstants.PREFIX;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class AuthorizationFilter extends OncePerRequestFilter {
 
     private final AccessTokenManager accessTokenManager;
@@ -35,12 +39,18 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
         String token = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if (Objects.nonNull(token) && token.startsWith(PREFIX)) {
-            authBusinessService.setAuthentication(
-                    accessTokenManager.getEmail(
-                            token.substring(7)
-                    )
-            );
+        try {
+            if (Objects.nonNull(token) && token.startsWith(PREFIX)) {
+                authBusinessService.setAuthentication(
+                        accessTokenManager.getEmail(
+                                token.substring(7)
+                        )
+                );
+            }
+        } catch (BaseException | JwtException ex) {
+            log.warn(ex.getMessage());
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
         filterChain.doFilter(request, response);

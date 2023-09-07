@@ -17,13 +17,14 @@ public class GlobalExceptionHandler  {
 
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<BaseResponse<?>> handleBaseException(BaseException ex) {
+        System.out.println("exception handler");
         return ResponseEntity.status(ex.getResponseMessage().status()).body(BaseResponse.error(ex));
     }
 
-    @ExceptionHandler(UsernameNotFoundException.class)
-    public ResponseEntity<BaseResponse<?>> handleUsernameNotFoundException(UsernameNotFoundException ex) {
-        BaseException baseException = (BaseException) ex.getCause();
-        return ResponseEntity.status(baseException.getResponseMessage().status()).body(BaseResponse.error(baseException));
-    }
+//    @ExceptionHandler(UsernameNotFoundException.class)
+//    public ResponseEntity<BaseResponse<?>> handleUsernameNotFoundException(UsernameNotFoundException ex) {
+//        BaseException baseException = (BaseException) ex.getCause();
+//        return ResponseEntity.status(baseException.getResponseMessage().status()).body(BaseResponse.error(baseException));
+//    }
 
 }
