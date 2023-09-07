@@ -16,5 +16,5 @@ public interface CountryRepository {
 
     List<Country> findAll();
 
-    void update(@RequestBody Country country);
+    void update(Country country);
 }
