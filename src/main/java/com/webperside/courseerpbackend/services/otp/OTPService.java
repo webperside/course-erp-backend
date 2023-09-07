@@ -1,7 +1,7 @@
 package com.webperside.courseerpbackend.services.otp;
 
 // Factory Pattern
-public interface OtpService {
+public interface OTPService {
 
     void send();
 

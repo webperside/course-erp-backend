@@ -1,10 +1,11 @@
 package com.webperside.courseerpbackend.controller;
 
 import com.webperside.courseerpbackend.models.base.BaseResponse;
-import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
 import com.webperside.courseerpbackend.models.payload.auth.LoginPayload;
 import com.webperside.courseerpbackend.models.payload.auth.RefreshTokenPayload;
 import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
+import com.webperside.courseerpbackend.models.payload.otp.BaseOTPChannelRequest;
+import com.webperside.courseerpbackend.models.payload.otp.BaseOTPRequest;
 import com.webperside.courseerpbackend.models.response.auth.LoginResponse;
 import com.webperside.courseerpbackend.services.security.AuthBusinessService;
 import lombok.RequiredArgsConstructor;
@@ -38,8 +39,19 @@ public class AuthController {
 
     @PostMapping("/sign-up")
     public BaseResponse<Void> signUp(@RequestBody SignUpPayload payload) {
-//        System.out.println(UserEntityMapper.INSTANCE.fromSignUpPayloadToUser(payload, "123123",1L));
         authBusinessService.signUp(payload);
+        return BaseResponse.success();
+    }
+
+    @PostMapping("/sign-up/otp/request")
+    public BaseResponse<Void> otpRequest(@RequestBody BaseOTPChannelRequest payload) {
+        authBusinessService.signUpOTP(payload);
+        return BaseResponse.success();
+    }
+
+    @PostMapping("/sign-up/otp/confirmation")
+    public BaseResponse<Void> otpConfirmation(@RequestBody BaseOTPRequest payload) {
+        authBusinessService.signUpOTPConfirmation(payload);
         return BaseResponse.success();
     }
 

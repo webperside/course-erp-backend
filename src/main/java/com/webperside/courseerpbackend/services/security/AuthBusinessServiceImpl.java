@@ -13,10 +13,13 @@ import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.models.payload.auth.LoginPayload;
 import com.webperside.courseerpbackend.models.payload.auth.RefreshTokenPayload;
 import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
+import com.webperside.courseerpbackend.models.payload.otp.BaseOTPChannelRequest;
+import com.webperside.courseerpbackend.models.payload.otp.BaseOTPRequest;
 import com.webperside.courseerpbackend.models.response.auth.LoginResponse;
 import com.webperside.courseerpbackend.services.branch.BranchService;
 import com.webperside.courseerpbackend.services.course.CourseService;
 import com.webperside.courseerpbackend.services.employee.EmployeeService;
+import com.webperside.courseerpbackend.services.otp.OTPFactory;
 import com.webperside.courseerpbackend.services.role.RoleService;
 import com.webperside.courseerpbackend.services.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -109,6 +112,17 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
         6. login - if user is not confirmed, can't login system
          */
 
+    }
+
+    @Override
+    public void signUpOTP(BaseOTPChannelRequest payload) {
+        // TODO: OTP processing
+        OTPFactory.handle(payload.getChannel()).send();
+    }
+
+    @Override
+    public void signUpOTPConfirmation(BaseOTPRequest payload) {
+        log.info(payload.getOtp() + " confirmed!");
     }
 
     @Override
