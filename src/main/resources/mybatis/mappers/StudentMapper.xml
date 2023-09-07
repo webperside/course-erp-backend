@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.webperside.courseerpbackend.repository.StudentRepository">
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO students (user_id)
+        VALUES (#{userId})
+    </insert>
+
+    <select id="findById" resultType="Student">
+        SELECT
+        <include refid="studentBaseColumns"/>
+        FROM students s
+        WHERE s.id = #{id} and s.is_deleted = false
+    </select>
+
+
+    <select id="findAll" resultType="Student">
+        SELECT
+        <include refid="studentBaseColumns"/>
+        FROM students s
+        WHERE s.is_deleted = false
+    </select>
+
+    <update id="update" parameterType="Student">
+        UPDATE students s
+        SET user_id = #{userId}
+        WHERE s.id = #{id};
+    </update>
+
+    <sql id="studentBaseColumns">
+        s.id,
+        s.user_id,
+        s.is_deleted
+    </sql>
+</mapper>
