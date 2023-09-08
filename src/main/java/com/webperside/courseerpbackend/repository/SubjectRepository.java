@@ -14,5 +14,5 @@ public interface SubjectRepository {
     List<Subject> findAll();
     Optional<Subject> findById(@Param("id") Long id);
     void insert(Subject subject);
-    void update (@RequestBody Subject subject);
+    void update (Subject subject);
 }
