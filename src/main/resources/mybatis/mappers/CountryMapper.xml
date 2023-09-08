@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.webperside.courseerpbackend.repository.CountryRepository">
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO countries (name)
+        VALUES (#{name})
+    </insert>
+
+    <select id="findById" resultType="Country">
+        SELECT
+        <include refid="countryBaseColumns"/>
+        FROM countries c
+        WHERE c.id = #{id} and c.is_deleted = false
+    </select>
+
+
+    <select id="findAll" resultType="Country">
+        SELECT
+        <include refid="countryBaseColumns"/>
+        FROM countries c
+        WHERE c.is_deleted = false
+    </select>
+
+    <sql id="countryBaseColumns">
+        c.id,
+        c.name,
+        c.is_deleted
+    </sql>
+
+    <update id="update" parameterType="Country">
+        UPDATE countries c
+        SET name = #{name}
+        WHERE c.id = #{id};
+    </update>
+</mapper>

@@ -3,10 +3,12 @@ package com.webperside.courseerpbackend;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webperside.courseerpbackend.models.enums.user.UserStatus;
 import com.webperside.courseerpbackend.models.mappers.CourseEntityMapper;
+import com.webperside.courseerpbackend.models.mybatis.country.Country;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
 import com.webperside.courseerpbackend.models.properties.security.SecurityProperties;
 import com.webperside.courseerpbackend.repository.UserRepository;
+import com.webperside.courseerpbackend.services.country.CountryService;
 import com.webperside.courseerpbackend.services.security.AccessTokenManager;
 import com.webperside.courseerpbackend.services.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +23,9 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -36,6 +40,7 @@ public class CourseErpBackendApplication implements CommandLineRunner {
 	private final AccessTokenManager accessTokenManager;
 
 	private final UserService userService;
+	private final CountryService countryService;
 	private final PasswordEncoder passwordEncoder;
 
 	@Override
@@ -84,6 +89,8 @@ public class CourseErpBackendApplication implements CommandLineRunner {
 //
 //		System.out.println(convertToPrivateKey(encodedPrivateKey));
 
+		// Testing Country Services Methods (Insert, Update, FindById, FindAll)
+//		testingCountryServices();
 	}
 
 	private static String convertToPrivateKey(String key) {
@@ -100,5 +107,46 @@ public class CourseErpBackendApplication implements CommandLineRunner {
 		result.append(key);
 		result.append("\n-----END PUBLIC KEY-----");
 		return result.toString();
+	}
+
+	// I believe we will remove this method later or rename, edit and move to unit testing
+	void testingCountryServices(){
+
+		// ------------ INSERT -----------
+		List<Country> countries = new ArrayList<Country>();
+		countries.add(new Country("Azerbaijan"));
+		countries.add(new Country("Turkey"));
+		countries.add(new Country("Georgia"));
+		countries.add(new Country("Russia"));
+		countries.add(new Country("Iran"));
+		countries.add(new Country("United States"));
+
+		for (Country c:countries) {
+			countryService.insert(c);
+		}
+
+		// --------- FIND ALL ----------
+
+
+		for (Country c:countryService.findAll()) {
+			System.out.println(c.getId() + " " + c.getName() + " - " + c.isDeleted());
+		}
+
+		// ------------ FIND by ID
+		long id = 2;
+		Country cntry = countryService.findById(id);
+		System.out.println("-------- Before Update --------");
+		System.out.println(cntry.getId() + " " + cntry.getName() + " - " + cntry.isDeleted());
+
+		// ------------- UPDATE -----------
+
+		cntry.setName("Testing update");
+		cntry.setId(Long.valueOf(id));
+		countryService.update(cntry);
+		cntry = countryService.findById(id);
+		System.out.println("-------- After Update --------");
+		System.out.println(cntry.getId() + " " + cntry.getName() + " - " + cntry.isDeleted());
+
+		// ------------ FIND by ID Exception not sure how to test
 	}
 }
