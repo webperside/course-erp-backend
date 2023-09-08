@@ -10,6 +10,6 @@ public interface LanguageService {
     void insert(Language language);
     List<Language> findAll();
     Language findById(Long id);
-    void update (@RequestBody Language language);
+    void update (Language language);
 
 }
