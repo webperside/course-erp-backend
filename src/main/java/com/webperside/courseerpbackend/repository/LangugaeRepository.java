@@ -13,5 +13,5 @@ public interface LangugaeRepository {
     void insert(Language language);
     List<Language> findAll();
     Optional<Language> findById(@Param("id") Long id);
-    void update(@RequestBody Language language);
+    void update(Language language);
 }
