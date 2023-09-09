@@ -13,5 +13,6 @@
     <include file="migrations/1.0/1.0.6-students-table.xml"/>
     <include file="migrations/1.0/1.0.7-alter-employee-table.xml"/>
     <include file="migrations/1.0/1.0.8-employee-branches-table.xml"/>
+    <include file="migrations/1.0/1.1.2-app-configs-table.xml"/>
 
 </databaseChangeLog>
