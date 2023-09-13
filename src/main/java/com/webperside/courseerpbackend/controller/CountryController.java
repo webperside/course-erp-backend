@@ -3,10 +3,7 @@ package com.webperside.courseerpbackend.controller;
 import com.webperside.courseerpbackend.models.mybatis.country.Country;
 import com.webperside.courseerpbackend.services.country.CountryServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,6 +15,12 @@ public class CountryController {
     @PostMapping
     public void insert(@RequestBody Country country){
         countryService.insert(country);
+    }
+
+    @PutMapping("/{id}")
+    public void update(@PathVariable("id") long id, @RequestBody Country country){
+        country.setId(id);
+        countryService.update(country);
     }
 
 }
