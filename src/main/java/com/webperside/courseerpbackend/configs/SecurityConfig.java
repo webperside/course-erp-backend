@@ -71,6 +71,7 @@ public class SecurityConfig {
 
                     // Country endpoints
                     request.requestMatchers("/v1/countries").authenticated();
+                    request.requestMatchers("/v1/countries/{id}").authenticated();
                 })
                 .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(eh -> eh.authenticationEntryPoint(authEntryPoint))
