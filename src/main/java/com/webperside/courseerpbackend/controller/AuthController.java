@@ -40,9 +40,11 @@ public class AuthController {
     @PostMapping("/sign-up")
     public BaseResponse<Void> signUp(@RequestBody SignUpPayload payload) {
         authBusinessService.signUp(payload);
+        // return proceedKey for continuing sign up process
         return BaseResponse.success();
     }
 
+    // use proceedKey
     @PostMapping("/sign-up/otp/request")
     public BaseResponse<Void> otpRequest(@RequestBody BaseOTPChannelRequest payload) {
         authBusinessService.signUpOTP(payload);

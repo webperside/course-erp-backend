@@ -2,6 +2,7 @@ package com.webperside.courseerpbackend.services.security;
 
 import com.webperside.courseerpbackend.exception.BaseException;
 import com.webperside.courseerpbackend.models.dto.RefreshTokenDto;
+import com.webperside.courseerpbackend.models.dto.SendOTPDto;
 import com.webperside.courseerpbackend.models.enums.branch.BranchStatus;
 import com.webperside.courseerpbackend.models.mappers.CourseEntityMapper;
 import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
@@ -117,7 +118,7 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
     @Override
     public void signUpOTP(BaseOTPChannelRequest payload) {
         // TODO: OTP processing
-        OTPFactory.handle(payload.getChannel()).send();
+        OTPFactory.handle(payload.getChannel()).send(SendOTPDto.of("user1@gmail.com", "otpsignup-1"));
     }
 
     @Override
