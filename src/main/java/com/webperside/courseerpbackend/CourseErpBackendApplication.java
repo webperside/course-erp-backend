@@ -1,14 +1,19 @@
 package com.webperside.courseerpbackend;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.webperside.courseerpbackend.models.enums.course.CourseStatus;
 import com.webperside.courseerpbackend.models.enums.user.UserStatus;
 import com.webperside.courseerpbackend.models.mappers.CourseEntityMapper;
 import com.webperside.courseerpbackend.models.mybatis.country.Country;
+import com.webperside.courseerpbackend.models.mybatis.course.Course;
+import com.webperside.courseerpbackend.models.mybatis.language.Language;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
 import com.webperside.courseerpbackend.models.properties.security.SecurityProperties;
 import com.webperside.courseerpbackend.repository.UserRepository;
 import com.webperside.courseerpbackend.services.country.CountryService;
+import com.webperside.courseerpbackend.services.course.CourseService;
+import com.webperside.courseerpbackend.services.language.LanguageService;
 import com.webperside.courseerpbackend.services.security.AccessTokenManager;
 import com.webperside.courseerpbackend.services.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -42,10 +47,12 @@ public class CourseErpBackendApplication implements CommandLineRunner {
 	private final UserService userService;
 	private final CountryService countryService;
 	private final PasswordEncoder passwordEncoder;
+	private final LanguageService languageService;
+	private final CourseService courseService;
 
 	@Override
 	public void run(String... args) throws Exception {
-
+		courseService.insert(Course.builder().name("a").status(CourseStatus.ACTIVE).build());
 //		User user = User.builder()
 //				.name("Test")
 //				.surname("test")
@@ -148,5 +155,6 @@ public class CourseErpBackendApplication implements CommandLineRunner {
 		System.out.println(cntry.getId() + " " + cntry.getName() + " - " + cntry.isDeleted());
 
 		// ------------ FIND by ID Exception not sure how to test
+
 	}
 }
