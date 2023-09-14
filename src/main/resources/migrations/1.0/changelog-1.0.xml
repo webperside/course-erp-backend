@@ -15,6 +15,7 @@
     <include file="migrations/1.0/1.0.8-employee-branches-table.xml"/>
     <include file="migrations/1.0/1.0.9-subjects-table.xml"/>
     <include file="migrations/1.0/1.1.0-groups-table.xml"/>
+    <include file="migrations/1.0/1.1.1-alter-languages-table.xml"/>
     <include file="migrations/1.0/1.1.3-user-configs-table.xml"/>
 
 </databaseChangeLog>
