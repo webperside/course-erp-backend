@@ -7,16 +7,13 @@
 
     <changeSet id="user-configs-table" author="arabxanrmzv">
         <createTable tableName="user_configs">
-            <column name="user_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
             <column name="id" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="value" type="VARCHAR(50)">
+            <column name="user_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="description" type="VARCHAR(50)">
+            <column name="value" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
             <column name="is_deleted" type="BOOLEAN" defaultValue="false">
