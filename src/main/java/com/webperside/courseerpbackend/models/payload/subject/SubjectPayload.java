@@ -1,11 +1,11 @@
-package com.webperside.courseerpbackend.models.dto;
+package com.webperside.courseerpbackend.models.payload.subject;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class SubjectRequestDto {
+public class SubjectPayload {
     String name;
     Long languageId;
 }

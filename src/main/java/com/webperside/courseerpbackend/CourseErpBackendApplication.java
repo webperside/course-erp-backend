@@ -36,23 +36,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CourseErpBackendApplication implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CourseErpBackendApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CourseErpBackendApplication.class, args);
+    }
 
 //	private final SecurityProperties securityProperties;
 
-	private final AccessTokenManager accessTokenManager;
+    private final AccessTokenManager accessTokenManager;
 
-	private final UserService userService;
-	private final CountryService countryService;
-	private final PasswordEncoder passwordEncoder;
-	private final LanguageService languageService;
-	private final CourseService courseService;
+    private final UserService userService;
+    private final CountryService countryService;
+    private final PasswordEncoder passwordEncoder;
 
-	@Override
-	public void run(String... args) throws Exception {
-		courseService.insert(Course.builder().name("a").status(CourseStatus.ACTIVE).build());
+    @Override
+    public void run(String... args) throws Exception {
 //		User user = User.builder()
 //				.name("Test")
 //				.surname("test")
@@ -96,65 +93,65 @@ public class CourseErpBackendApplication implements CommandLineRunner {
 //
 //		System.out.println(convertToPrivateKey(encodedPrivateKey));
 
-		// Testing Country Services Methods (Insert, Update, FindById, FindAll)
+        // Testing Country Services Methods (Insert, Update, FindById, FindAll)
 //		testingCountryServices();
-	}
+    }
 
-	private static String convertToPrivateKey(String key) {
-		StringBuilder result = new StringBuilder();
-		result.append("-----BEGIN PRIVATE KEY-----\n");
-		result.append(key);
-		result.append("\n-----END PRIVATE KEY-----");
-		return result.toString();
-	}
+    private static String convertToPrivateKey(String key) {
+        StringBuilder result = new StringBuilder();
+        result.append("-----BEGIN PRIVATE KEY-----\n");
+        result.append(key);
+        result.append("\n-----END PRIVATE KEY-----");
+        return result.toString();
+    }
 
-	private static String convertToPublicKey(String key) {
-		StringBuilder result = new StringBuilder();
-		result.append("-----BEGIN PUBLIC KEY-----\n");
-		result.append(key);
-		result.append("\n-----END PUBLIC KEY-----");
-		return result.toString();
-	}
+    private static String convertToPublicKey(String key) {
+        StringBuilder result = new StringBuilder();
+        result.append("-----BEGIN PUBLIC KEY-----\n");
+        result.append(key);
+        result.append("\n-----END PUBLIC KEY-----");
+        return result.toString();
+    }
 
-	// I believe we will remove this method later or rename, edit and move to unit testing
-	void testingCountryServices(){
+    // I believe we will remove this method later or rename, edit and move to unit testing
+    void testingCountryServices() {
 
-		// ------------ INSERT -----------
-		List<Country> countries = new ArrayList<Country>();
-		countries.add(new Country("Azerbaijan"));
-		countries.add(new Country("Turkey"));
-		countries.add(new Country("Georgia"));
-		countries.add(new Country("Russia"));
-		countries.add(new Country("Iran"));
-		countries.add(new Country("United States"));
+        // ------------ INSERT -----------
+        List<Country> countries = new ArrayList<Country>();
+        countries.add(new Country("Azerbaijan"));
+        countries.add(new Country("Turkey"));
+        countries.add(new Country("Georgia"));
+        countries.add(new Country("Russia"));
+        countries.add(new Country("Iran"));
+        countries.add(new Country("United States"));
 
-		for (Country c:countries) {
-			countryService.insert(c);
-		}
+        for (Country c : countries) {
+            countryService.insert(c);
+        }
 
-		// --------- FIND ALL ----------
+        // --------- FIND ALL ----------
 
 
-		for (Country c:countryService.findAll()) {
-			System.out.println(c.getId() + " " + c.getName() + " - " + c.isDeleted());
-		}
+        for (Country c : countryService.findAll()) {
+            System.out.println(c.getId() + " " + c.getName() + " - " + c.isDeleted());
+        }
 
-		// ------------ FIND by ID
-		long id = 2;
-		Country cntry = countryService.findById(id);
-		System.out.println("-------- Before Update --------");
-		System.out.println(cntry.getId() + " " + cntry.getName() + " - " + cntry.isDeleted());
+        // ------------ FIND by ID
+        long id = 2;
+        Country cntry = countryService.findById(id);
+        System.out.println("-------- Before Update --------");
+        System.out.println(cntry.getId() + " " + cntry.getName() + " - " + cntry.isDeleted());
 
-		// ------------- UPDATE -----------
+        // ------------- UPDATE -----------
 
-		cntry.setName("Testing update");
-		cntry.setId(Long.valueOf(id));
-		countryService.update(cntry);
-		cntry = countryService.findById(id);
-		System.out.println("-------- After Update --------");
-		System.out.println(cntry.getId() + " " + cntry.getName() + " - " + cntry.isDeleted());
+        cntry.setName("Testing update");
+        cntry.setId(Long.valueOf(id));
+        countryService.update(cntry);
+        cntry = countryService.findById(id);
+        System.out.println("-------- After Update --------");
+        System.out.println(cntry.getId() + " " + cntry.getName() + " - " + cntry.isDeleted());
 
-		// ------------ FIND by ID Exception not sure how to test
+        // ------------ FIND by ID Exception not sure how to test
 
-	}
+    }
 }
