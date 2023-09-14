@@ -10,7 +10,7 @@
             <column name="user_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="key" type="VARCHAR(50)">
+            <column name="id" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
             <column name="value" type="VARCHAR(50)">
