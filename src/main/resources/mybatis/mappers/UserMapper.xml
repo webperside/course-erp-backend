@@ -15,6 +15,21 @@
             AND u.is_deleted = false
     </select>
 
+    <select id="findByPhoneNumber" resultType="User">
+        SELECT
+        <include refid="userBaseColumns"/>
+        FROM users u
+        WHERE u.phone_number = #{phoneNumber}
+        AND u.is_deleted = false
+    </select>
+
+<!--    <select id="existsPhoneNumber" resultType="boolean">-->
+<!--        SELECT COUNT(*) > 0-->
+<!--        FROM users-->
+<!--        WHERE phone_number = #{phoneNumber} AND is_deleted = false-->
+<!--    </select>-->
+
+
     <sql id="userBaseColumns">
         u.id,
         u.name,

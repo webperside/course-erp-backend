@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.services.student;
 
 import com.webperside.courseerpbackend.models.mybatis.student.Student;
+import com.webperside.courseerpbackend.models.payload.student.StudentPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,6 @@ public interface StudentService {
 
     List<Student> findAll();
 
-
+    void addStudent(StudentPayload studentPayload);
 
 }
