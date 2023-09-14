@@ -1,12 +1,9 @@
 package com.webperside.courseerpbackend.services.student;
 
 import com.webperside.courseerpbackend.exception.BaseException;
-import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.EMAIL_ALREADY_REGISTERED;
 import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.PHONE_NUMBER_ALREADY_EXIST;
-import com.webperside.courseerpbackend.models.mappers.CourseEntityMapper;
 import com.webperside.courseerpbackend.models.mappers.StudentEntityMapper;
 import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
-import com.webperside.courseerpbackend.models.mybatis.course.Course;
 import com.webperside.courseerpbackend.models.mybatis.role.Role;
 import com.webperside.courseerpbackend.models.mybatis.student.Student;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
