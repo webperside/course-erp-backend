@@ -17,6 +17,4 @@ public interface StudentService {
 
     List<Student> findAll();
 
-    void addStudent(StudentPayload studentPayload);
-
 }

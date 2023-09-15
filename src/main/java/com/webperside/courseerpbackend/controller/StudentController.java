@@ -2,6 +2,7 @@ package com.webperside.courseerpbackend.controller;
 
 import com.webperside.courseerpbackend.models.base.BaseResponse;
 import com.webperside.courseerpbackend.models.payload.student.StudentPayload;
+import com.webperside.courseerpbackend.services.student.StudentBusinessService;
 import com.webperside.courseerpbackend.services.student.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1/students")
 @RequiredArgsConstructor
 public class StudentController {
-    private final StudentService studentService;
+    private final StudentBusinessService studentBusinessService;
 
     @PostMapping("/add")
     public BaseResponse<Void> addStudent(@RequestBody StudentPayload studentPayload) {
-        studentService.addStudent(studentPayload);
+        studentBusinessService.addStudent(studentPayload);
         return BaseResponse.success();
 
     }
