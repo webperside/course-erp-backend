@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Language extends BaseEntity {
+public class Language extends BaseEntity<Long> {
 
     String name;
     Boolean hasLocalization;
