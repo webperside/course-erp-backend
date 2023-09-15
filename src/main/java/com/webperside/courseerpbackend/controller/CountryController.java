@@ -12,12 +12,12 @@ public class CountryController {
 
     private final CountryBusinessService countryBusinessService;
 
-    @PostMapping
+    @PostMapping("/country")
     public void insert(@RequestBody CountryPayload countryPayload){
         countryBusinessService.insert(countryPayload);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/country/{id}")
     public void update(@PathVariable("id") long id, @RequestBody CountryPayload countryPayload){
         countryBusinessService.update(id, countryPayload);
     }
