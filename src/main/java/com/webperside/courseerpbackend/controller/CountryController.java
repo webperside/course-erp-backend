@@ -1,7 +1,7 @@
 package com.webperside.courseerpbackend.controller;
 
-import com.webperside.courseerpbackend.models.mybatis.country.Country;
-import com.webperside.courseerpbackend.services.country.CountryServiceImpl;
+import com.webperside.courseerpbackend.models.payload.country.CountryPayload;
+import com.webperside.courseerpbackend.services.country.CountryBusinessService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,17 +10,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/v1/countries")
 public class CountryController {
 
-    private final CountryServiceImpl countryService;
+    private final CountryBusinessService countryBusinessService;
 
     @PostMapping
-    public void insert(@RequestBody Country country){
-        countryService.insert(country);
+    public void insert(@RequestBody CountryPayload countryPayload){
+        countryBusinessService.insert(countryPayload);
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable("id") long id, @RequestBody Country country){
-        country.setId(id);
-        countryService.update(country);
+    public void update(@PathVariable("id") long id, @RequestBody CountryPayload countryPayload){
+        countryBusinessService.update(id, countryPayload);
     }
 
 }
