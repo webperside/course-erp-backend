@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentController {
     private final StudentBusinessService studentBusinessService;
 
-    @PostMapping("/add")
+    @PostMapping
     public BaseResponse<Void> addStudent(@RequestBody StudentPayload studentPayload) {
         studentBusinessService.addStudent(studentPayload);
         return BaseResponse.success();
