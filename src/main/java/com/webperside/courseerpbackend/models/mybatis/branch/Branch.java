@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Branch extends BaseEntity {
+public class Branch extends BaseEntity<Long> {
 
     String name;
     BranchStatus status;

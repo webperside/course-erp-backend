@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.webperside.courseerpbackend.repository.GroupRepository">
+
+    <select id="findAll" resultType="Group">
+        SELECT
+        <include refid="groupBaseColumns"/>
+        FROM groups g
+        WHERE g.is_deleted=false
+    </select>
+
+    <select id="findById" resultType="Group">
+        SELECT
+        <include refid="groupBaseColumns"/>
+        FROM groups g
+        WHERE g.id = #{id} and g.is_deleted = false
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO groups (name)
+        VALUES (#{name})
+    </insert>
+
+    <update id="update" parameterType="Group">
+        UPDATE groups g
+        SET name = #{name}
+        WHERE g.id = #{id};
+    </update>
+
+    <sql id="groupBaseColumns">
+        g.id,
+        g.name,
+        g.is_deleted
+    </sql>
+</mapper>

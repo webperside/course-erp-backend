@@ -8,8 +8,8 @@ import lombok.experimental.FieldDefaults;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BaseEntity extends IsDeletedEntity {
+public class BaseEntity <T> extends IsDeletedEntity {
 
-    Long id;
+    T id;
 
 }

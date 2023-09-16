@@ -3,6 +3,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/course_erp_db
     username: postgres
     password: postgres
+  redis:
+    redisson:
+      file: classpath:redisson.yml
 
 security:
   jwt:

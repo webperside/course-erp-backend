@@ -44,10 +44,6 @@ public class CourseErpBackendApplication implements CommandLineRunner {
 
     private final AccessTokenManager accessTokenManager;
 
-    private final UserService userService;
-    private final CountryService countryService;
-    private final PasswordEncoder passwordEncoder;
-
     @Override
     public void run(String... args) throws Exception {
 //		User user = User.builder()

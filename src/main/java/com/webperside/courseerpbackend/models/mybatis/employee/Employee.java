@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Employee extends BaseEntity {
+public class Employee extends BaseEntity<Long> {
 
     Long userId;
 
