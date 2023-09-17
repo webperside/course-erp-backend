@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SubjectController {
     private final SubjectBusinessService subjectBusinessService;
 
-    @PostMapping("/subject")
+    @PostMapping
     public BaseResponse<Void> addSubject(@RequestBody SubjectPayload subjectPayload) {
         subjectBusinessService.insertSubject(subjectPayload);
         return BaseResponse.success();
