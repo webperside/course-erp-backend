@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.webperside.courseerpbackend.repository.AppConfigsRepository">
+
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO app_configs a (value,description)
+        VALUES (#{value}, #{description})
+    </insert>
+
+    <select id="findById" resultType="AppConfigs">
+        SELECT
+        <include refid="appConfigsBaseColumns"/>
+        FROM app_configs a
+        WHERE a.id = #{id} and a.is_deleted = false
+    </select>
+
+    <select id="findAll" resultType="AppConfigs">
+        SELECT
+        <include refid="appConfigsBaseColumns"/>
+        FROM app_configs a
+        WHERE a.is_deleted=false
+    </select>
+
+    <update id="update" parameterType="AppConfigs">
+        UPDATE app_configs a
+        SET value      = #{value},
+            description=#{description}
+        WHERE a.id = #{id};
+    </update>
+
+
+    <sql id="appConfigsBaseColumns">
+        a
+        .
+        id
+        ,
+        a.value,
+        a.description,
+        a.is_deleted
+    </sql>
+
+</mapper>
