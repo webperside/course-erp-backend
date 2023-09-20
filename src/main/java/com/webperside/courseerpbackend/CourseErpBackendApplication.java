@@ -43,6 +43,7 @@ public class CourseErpBackendApplication implements CommandLineRunner {
 //	private final SecurityProperties securityProperties;
 
     private final AccessTokenManager accessTokenManager;
+    private final CountryService countryService;
 
     @Override
     public void run(String... args) throws Exception {

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.webperside.courseerpbackend.repository.UserConfigRepository">
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO user_configs (value, user_id)
+        VALUES (#{value}, #{userId})
+    </insert>
+
+    <select id="findByIdAndUserId" resultType="UserConfig">
+        SELECT
+        <include refid="userConfigBaseColumns"/>
+        FROM user_configs u
+        WHERE u.id = #{id} AND u.user_id = #{userId} AND u.is_deleted = false
+    </select>
+
+
+    <select id="findAll" resultType="UserConfig">
+        SELECT
+        <include refid="userConfigBaseColumns"/>
+        FROM user_configs u
+        WHERE u.is_deleted = false
+    </select>
+
+    <sql id="userConfigBaseColumns">
+        u.id,
+        u.value,
+        u.user_id,
+        u.is_deleted
+    </sql>
+
+    <update id="update" parameterType="UserConfig">
+        UPDATE user_configs u
+        SET value = #{value}, user_id = #{userId}
+        WHERE u.id = #{id} AND user_id = #{userId};
+    </update>
+</mapper>
