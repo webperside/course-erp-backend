@@ -17,14 +17,14 @@ public class CountryController {
     private final CountryService countryService;
     private static final CountryEntityMapper countryEntityMapper = CountryEntityMapper.INSTANCE;
 
-    @PostMapping("/country")
+    @PostMapping
     public BaseResponse<Void> insert(@RequestBody CountryPayload countryPayload){
         Country country = countryEntityMapper.toEntity(countryPayload);
         countryService.insert(country);
         return BaseResponse.success();
     }
 
-    @PutMapping("/country/{id}")
+    @PutMapping("/{id}")
     public BaseResponse<Void> update(@PathVariable("id") long id, @RequestBody CountryPayload countryPayload){
         countryPayload.setId(id);
         Country country = countryEntityMapper.toEntity(countryPayload, new Country());
