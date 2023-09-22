@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AppConfigs extends BaseEntity<Long> {
+public class AppConfig extends BaseEntity<Long> {
     String value;
     String description;
 }
