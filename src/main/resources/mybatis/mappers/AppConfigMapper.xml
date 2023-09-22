@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.webperside.courseerpbackend.repository.AppConfigsRepository">
+<mapper namespace="com.webperside.courseerpbackend.repository.AppConfigRepository">
 
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
@@ -8,33 +8,30 @@
         VALUES (#{value}, #{description})
     </insert>
 
-    <select id="findById" resultType="AppConfigs">
+    <select id="findById" resultType="AppConfig">
         SELECT
-        <include refid="appConfigsBaseColumns"/>
+        <include refid="appConfigBaseColumns"/>
         FROM app_configs a
         WHERE a.id = #{id} and a.is_deleted = false
     </select>
 
-    <select id="findAll" resultType="AppConfigs">
+    <select id="findAll" resultType="AppConfig">
         SELECT
-        <include refid="appConfigsBaseColumns"/>
+        <include refid="appConfigBaseColumns"/>
         FROM app_configs a
         WHERE a.is_deleted=false
     </select>
 
-    <update id="update" parameterType="AppConfigs">
+    <update id="update" parameterType="AppConfig">
         UPDATE app_configs a
-        SET value      = #{value},
-            description=#{description}
+        SET value = #{value},
+            description = #{description}
         WHERE a.id = #{id};
     </update>
 
 
-    <sql id="appConfigsBaseColumns">
-        a
-        .
-        id
-        ,
+    <sql id="appConfigBaseColumns">
+        a.id,
         a.value,
         a.description,
         a.is_deleted
