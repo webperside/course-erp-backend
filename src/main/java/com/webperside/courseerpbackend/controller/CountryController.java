@@ -26,9 +26,7 @@ public class CountryController {
 
     @PutMapping("/{id}")
     public BaseResponse<Void> update(@PathVariable("id") long id, @RequestBody CountryPayload countryPayload){
-        countryPayload.setId(id);
-        Country country = countryEntityMapper.toEntity(countryPayload, new Country());
-        countryService.update(country);
+        countryService.update(countryEntityMapper.toEntity(countryPayload, id));
         return BaseResponse.success();
     }
 

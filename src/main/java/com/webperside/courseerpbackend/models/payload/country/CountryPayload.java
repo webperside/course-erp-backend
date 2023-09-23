@@ -12,6 +12,5 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CountryPayload {
-    Long id;
     String name;
 }

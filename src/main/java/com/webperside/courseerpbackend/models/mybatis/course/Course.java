@@ -4,10 +4,10 @@ import com.webperside.courseerpbackend.models.enums.course.CourseStatus;
 import com.webperside.courseerpbackend.models.mybatis.base.BaseEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
-// SuperBuilder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)

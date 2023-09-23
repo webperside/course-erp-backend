@@ -14,7 +14,8 @@ public interface CountryEntityMapper {
 
 
 
-//    @Mapping( source = "id", target="id")
+
     Country toEntity(CountryPayload countryPayload);
-    Country toEntity(CountryPayload countryPayload, @MappingTarget Country country);
+    @Mapping(source = "id", target="id")
+    Country toEntity(CountryPayload countryPayload, Long id);
 }
