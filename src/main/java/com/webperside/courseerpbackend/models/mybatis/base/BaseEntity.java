@@ -10,8 +10,8 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BaseEntity <T> extends IsDeletedEntity {
+public class BaseEntity<ID> extends IsDeletedEntity<ID> {
 
-    T id;
+    ID id;
 
 }

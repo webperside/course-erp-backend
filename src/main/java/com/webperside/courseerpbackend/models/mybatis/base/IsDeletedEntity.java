@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class IsDeletedEntity {
+public class IsDeletedEntity<Dummy> {
 
     boolean isDeleted;
 
