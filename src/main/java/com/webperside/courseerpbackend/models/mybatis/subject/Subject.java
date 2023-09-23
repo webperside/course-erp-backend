@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Subject extends BaseEntity {
+public class Subject extends BaseEntity<Long> {
 
     String name;
     Long courseId;

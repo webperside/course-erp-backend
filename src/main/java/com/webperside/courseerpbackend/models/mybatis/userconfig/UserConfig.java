@@ -1,18 +1,19 @@
-package com.webperside.courseerpbackend.models.mybatis.employee;
+package com.webperside.courseerpbackend.models.mybatis.userconfig;
+
 
 import com.webperside.courseerpbackend.models.mybatis.base.BaseEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import lombok.experimental.SuperBuilder;
 
 @Data
-@SuperBuilder
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Employee extends BaseEntity<Long> {
-
+public class UserConfig extends BaseEntity<String> {
+    String value;
     Long userId;
-
 }
+
+

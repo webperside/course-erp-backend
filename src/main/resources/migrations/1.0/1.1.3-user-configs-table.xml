@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="user-configs-table" author="arabxanrmzv">
+        <createTable tableName="user_configs">
+            <column name="id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="BOOLEAN" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint  baseColumnNames="user_id"
+                                  baseTableName="user_configs"
+                                  constraintName="fk_user_configs_user_id"
+                                  deferrable="false"
+                                  initiallyDeferred="false"
+                                  onDelete="NO ACTION"
+                                  onUpdate="NO ACTION"
+                                  referencedColumnNames="id"
+                                  referencedTableName="users"
+                                  validate="true"/>
+    </changeSet>
+</databaseChangeLog>
