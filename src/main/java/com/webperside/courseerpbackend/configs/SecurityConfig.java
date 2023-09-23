@@ -70,8 +70,8 @@ public class SecurityConfig {
                     request.requestMatchers("/test/no-auth").permitAll();
 
                     // Country endpoints
-                    request.requestMatchers("/v1/countries/country").authenticated();
-                    request.requestMatchers("/v1/countries/country/{id}").authenticated();
+                    request.requestMatchers("/v1/countries").authenticated();
+                    request.requestMatchers("/v1/countries/{id}").authenticated();
                 })
                 .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(eh -> eh.authenticationEntryPoint(authEntryPoint))
