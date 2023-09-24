@@ -1,6 +1,9 @@
 package com.webperside.courseerpbackend.controller;
 
+import com.webperside.courseerpbackend.models.base.BaseResponse;
 import com.webperside.courseerpbackend.models.mybatis.language.Language;
+import com.webperside.courseerpbackend.models.payload.language.LanguagePayLoad;
+import com.webperside.courseerpbackend.services.language.LanguageBusinessService;
 import com.webperside.courseerpbackend.services.language.LanguageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -10,15 +13,16 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class LanguageController {
 
-    private final LanguageService languageService;
+    private final LanguageBusinessService languageBusinessService;
 
     @PostMapping("/languages")
-    public void insert(@RequestBody Language language){
-        languageService.insert(language);
+    public BaseResponse<Void> insert(@RequestBody LanguagePayLoad languagePayLoad){
+        languageBusinessService.insertLanguage(languagePayLoad);
+        return BaseResponse.success();
     }
     @PutMapping("/languages/{id}")
-    public void update(@PathVariable("id") Long id, @RequestBody Language language){
-        language.setId(id);
-        languageService.update(language);
+    public BaseResponse<Void> update(@PathVariable("id") Long id, @RequestBody LanguagePayLoad languagePayLoad){
+        languageBusinessService.updateLanguage(languagePayLoad);
+        return BaseResponse.success();
     }
 }
