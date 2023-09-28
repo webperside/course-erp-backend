@@ -4,14 +4,15 @@ import com.webperside.courseerpbackend.models.mybatis.language.Language;
 import com.webperside.courseerpbackend.models.payload.language.LanguagePayLoad;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper
 public interface LanguageEntityMapper {
 
     LanguageEntityMapper INSTANCE = Mappers.getMapper(LanguageEntityMapper.class);
 
-    @Mapping(target = "name", source="name")
-    Language fromLanguagePayLoad(LanguagePayLoad languagePayLoad,String name);
+    Language toEntity(LanguagePayLoad languagePayLoad);
+
+    @Mapping(source = "id", target="id")
+    Language toEntity(LanguagePayLoad languagePayLoad, Long id);
 }
