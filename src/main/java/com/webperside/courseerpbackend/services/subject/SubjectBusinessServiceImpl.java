@@ -4,9 +4,11 @@ import com.webperside.courseerpbackend.models.mappers.SubjectEntityMapper;
 import com.webperside.courseerpbackend.models.payload.subject.SubjectPayload;
 import com.webperside.courseerpbackend.services.language.LanguageService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class SubjectBusinessServiceImpl implements SubjectBusinessService {
     private final SubjectService subjectService;
