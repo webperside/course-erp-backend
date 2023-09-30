@@ -23,7 +23,9 @@ import com.webperside.courseerpbackend.services.employee.EmployeeService;
 import com.webperside.courseerpbackend.services.otp.OTPFactory;
 import com.webperside.courseerpbackend.services.role.RoleService;
 import com.webperside.courseerpbackend.services.user.UserService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,20 +41,21 @@ import static com.webperside.courseerpbackend.models.enums.response.ErrorRespons
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthBusinessServiceImpl implements AuthBusinessService {
 
-    private final static String BRANCH_NAME_DEFAULT_PATTERN = "%s Default Branch";
+    final static String BRANCH_NAME_DEFAULT_PATTERN = "%s Default Branch";
 
-    private final AuthenticationManager authenticationManager;
-    private final AccessTokenManager accessTokenManager;
-    private final RefreshTokenManager refreshTokenManager;
-    private final UserService userService;
-    private final UserDetailsService userDetailsService;
-    private final BCryptPasswordEncoder passwordEncoder;
-    private final RoleService roleService;
-    private final CourseService courseService;
-    private final BranchService branchService;
-    private final EmployeeService employeeService;
+    final AuthenticationManager authenticationManager;
+    final AccessTokenManager accessTokenManager;
+    final RefreshTokenManager refreshTokenManager;
+    final UserService userService;
+    final UserDetailsService userDetailsService;
+    final BCryptPasswordEncoder passwordEncoder;
+    final RoleService roleService;
+    final CourseService courseService;
+    final BranchService branchService;
+    final EmployeeService employeeService;
 
     @Override
     public LoginResponse login(LoginPayload payload) {

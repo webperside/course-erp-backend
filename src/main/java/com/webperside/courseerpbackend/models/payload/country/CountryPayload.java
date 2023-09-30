@@ -8,8 +8,6 @@ import lombok.experimental.FieldDefaults;
 
 
 @Data
-@Setter
-@Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CountryPayload {
     String name;
