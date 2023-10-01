@@ -52,7 +52,7 @@
                                   onDelete="NO ACTION"
                                   onUpdate="NO ACTION"
                                   referencedColumnNames="id"
-                                  referencedTableName="language"
+                                  referencedTableName="languages"
                                   validate="true"/>
 
     </changeSet>

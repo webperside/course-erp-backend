@@ -1,7 +1,7 @@
 package com.webperside.courseerpbackend.models.mappers;
 
 import com.webperside.courseerpbackend.models.mybatis.course.Course;
-import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
+import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpPayload;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

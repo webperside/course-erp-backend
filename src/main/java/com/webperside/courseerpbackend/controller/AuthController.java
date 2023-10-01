@@ -1,11 +1,12 @@
 package com.webperside.courseerpbackend.controller;
 
 import com.webperside.courseerpbackend.models.base.BaseResponse;
+import com.webperside.courseerpbackend.models.common.proceedkey.ProceedKey;
 import com.webperside.courseerpbackend.models.payload.auth.LoginPayload;
 import com.webperside.courseerpbackend.models.payload.auth.RefreshTokenPayload;
-import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
-import com.webperside.courseerpbackend.models.payload.otp.BaseOTPChannelRequest;
-import com.webperside.courseerpbackend.models.payload.otp.BaseOTPRequest;
+import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpPayload;
+import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpOTPChannelRequest;
+import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpOTPRequest;
 import com.webperside.courseerpbackend.models.response.auth.LoginResponse;
 import com.webperside.courseerpbackend.services.security.AuthBusinessService;
 import lombok.RequiredArgsConstructor;
@@ -38,21 +39,19 @@ public class AuthController {
     }
 
     @PostMapping("/sign-up")
-    public BaseResponse<Void> signUp(@RequestBody SignUpPayload payload) {
-        authBusinessService.signUp(payload);
-        // return proceedKey for continuing sign up process
-        return BaseResponse.success();
+    public BaseResponse<ProceedKey> signUp(@RequestBody SignUpPayload payload) {
+        return BaseResponse.success(authBusinessService.signUp(payload));
     }
 
     // use proceedKey
     @PostMapping("/sign-up/otp/request")
-    public BaseResponse<Void> otpRequest(@RequestBody BaseOTPChannelRequest payload) {
+    public BaseResponse<Void> otpRequest(@RequestBody SignUpOTPChannelRequest payload) {
         authBusinessService.signUpOTP(payload);
         return BaseResponse.success();
     }
 
     @PostMapping("/sign-up/otp/confirmation")
-    public BaseResponse<Void> otpConfirmation(@RequestBody BaseOTPRequest payload) {
+    public BaseResponse<Void> otpConfirmation(@RequestBody SignUpOTPRequest payload) {
         authBusinessService.signUpOTPConfirmation(payload);
         return BaseResponse.success();
     }

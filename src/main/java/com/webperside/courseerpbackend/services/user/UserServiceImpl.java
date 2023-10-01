@@ -21,9 +21,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void update(User user) {
+        userRepository.update(user);
+    }
+
+    @Override
     public User getByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(
                 () -> BaseException.notFound(User.class.getSimpleName(), "email", email)
+        );
+    }
+
+    @Override
+    public User getById(Long id) {
+        return userRepository.findById(id).orElseThrow(
+                () -> BaseException.notFound(User.class.getSimpleName(), "id", id)
         );
     }
 

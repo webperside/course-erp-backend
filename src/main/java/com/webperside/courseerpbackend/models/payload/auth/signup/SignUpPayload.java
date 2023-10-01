@@ -1,4 +1,4 @@
-package com.webperside.courseerpbackend.models.payload.auth;
+package com.webperside.courseerpbackend.models.payload.auth.signup;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
