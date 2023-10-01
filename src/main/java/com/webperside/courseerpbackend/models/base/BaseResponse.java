@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.webperside.courseerpbackend.exception.BaseException;
 import com.webperside.courseerpbackend.exception.types.NotFoundExceptionType;
 import com.webperside.courseerpbackend.models.enums.response.ResponseMessages;
-import com.webperside.courseerpbackend.models.enums.response.SuccessResponseMessages;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;

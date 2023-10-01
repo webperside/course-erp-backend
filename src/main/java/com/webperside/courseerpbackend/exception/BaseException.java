@@ -1,7 +1,6 @@
 package com.webperside.courseerpbackend.exception;
 
 import com.webperside.courseerpbackend.exception.types.NotFoundExceptionType;
-import com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages;
 import com.webperside.courseerpbackend.models.enums.response.ResponseMessages;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

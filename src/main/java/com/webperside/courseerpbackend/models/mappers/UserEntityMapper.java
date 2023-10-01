@@ -1,6 +1,5 @@
 package com.webperside.courseerpbackend.models.mappers;
 
-import com.webperside.courseerpbackend.models.enums.user.UserStatus;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
 import com.webperside.courseerpbackend.models.payload.student.StudentPayload;

@@ -3,7 +3,7 @@ package com.webperside.courseerpbackend.filters;
 import com.webperside.courseerpbackend.exception.BaseException;
 import com.webperside.courseerpbackend.services.security.AccessTokenManager;
 import com.webperside.courseerpbackend.services.security.AuthBusinessService;
-import io.jsonwebtoken.Claims;
+import static com.webperside.courseerpbackend.constants.TokenConstants.PREFIX;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -12,18 +12,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Objects;
 
-import static com.webperside.courseerpbackend.constants.TokenConstants.EMAIL_KEY;
-import static com.webperside.courseerpbackend.constants.TokenConstants.PREFIX;
 
 @Component
 @RequiredArgsConstructor

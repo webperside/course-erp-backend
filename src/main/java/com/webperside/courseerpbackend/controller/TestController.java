@@ -1,10 +1,8 @@
 package com.webperside.courseerpbackend.controller;
 
-import com.webperside.courseerpbackend.exception.BaseException;
 import com.webperside.courseerpbackend.models.base.BaseResponse;
 import com.webperside.courseerpbackend.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
