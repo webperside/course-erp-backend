@@ -1,22 +1,17 @@
-package com.webperside.courseerpbackend.models.payload.auth;
+package com.webperside.courseerpbackend.models.payload.student;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class SignUpPayload {
+public class StudentPayload {
 
+    //todo: validation
     String name;
     String surname;
     String email;
     String phoneNumber;
-    String password;
-
-    String courseName;
-    String address;
 
 }

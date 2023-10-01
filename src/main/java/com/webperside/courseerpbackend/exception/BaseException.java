@@ -1,7 +1,6 @@
 package com.webperside.courseerpbackend.exception;
 
 import com.webperside.courseerpbackend.exception.types.NotFoundExceptionType;
-import com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages;
 import com.webperside.courseerpbackend.models.enums.response.ResponseMessages;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -37,7 +36,7 @@ public class BaseException extends RuntimeException {
         return of(UNEXPECTED);
     }
 
-    public static BaseException notFound(String target, String field, String value) {
+    public static BaseException notFound(String target, String field, Object value) {
         return BaseException.builder()
                 .responseMessage(NOT_FOUND)
                 .notFoundData(

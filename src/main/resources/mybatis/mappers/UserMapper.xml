@@ -7,6 +7,12 @@
         VALUES (#{name}, #{surname}, #{status}, #{roleId}, #{email}, #{phoneNumber}, #{password})
     </insert>
 
+    <insert id="update" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        UPDATE users SET name=#{name}, surname=#{surname}, status=#{status}, role_id=#{roleId},
+                email=#{email}, phone_number=#{phoneNumber}
+            WHERE id = #{id}
+    </insert>
+
     <select id="findByEmail" resultType="User">
         SELECT
             <include refid="userBaseColumns"/>
@@ -14,6 +20,29 @@
         WHERE u.email = #{email}
             AND u.is_deleted = false
     </select>
+
+    <select id="findById" resultType="User">
+        SELECT
+            <include refid="userBaseColumns"/>
+        FROM users u
+        WHERE u.id = #{id}
+            AND u.is_deleted = false
+    </select>
+
+    <select id="findByPhoneNumber" resultType="User">
+        SELECT
+        <include refid="userBaseColumns"/>
+        FROM users u
+        WHERE u.phone_number = #{phoneNumber}
+        AND u.is_deleted = false
+    </select>
+
+<!--    <select id="existsPhoneNumber" resultType="boolean">-->
+<!--        SELECT COUNT(*) > 0-->
+<!--        FROM users-->
+<!--        WHERE phone_number = #{phoneNumber} AND is_deleted = false-->
+<!--    </select>-->
+
 
     <sql id="userBaseColumns">
         u.id,

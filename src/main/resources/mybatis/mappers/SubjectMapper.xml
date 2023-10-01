@@ -33,7 +33,7 @@
         s.name,
         s.course_id,
         s.language_id,
-        b.is_deleted
+        s.is_deleted
     </sql>
 
 </mapper>

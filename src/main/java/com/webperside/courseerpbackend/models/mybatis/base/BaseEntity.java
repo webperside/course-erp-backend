@@ -1,15 +1,17 @@
 package com.webperside.courseerpbackend.models.mybatis.base;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 
 @Data
+@SuperBuilder(builderMethodName = "baseBuilder")
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BaseEntity extends IsDeletedEntity {
+public class BaseEntity<ID> extends IsDeletedEntity {
 
-    Long id;
+    ID id;
 
 }

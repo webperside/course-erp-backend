@@ -12,6 +12,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SecurityProperties {
 
-    JwtData jwt;
+    SecurityJwtData jwt;
 
 }

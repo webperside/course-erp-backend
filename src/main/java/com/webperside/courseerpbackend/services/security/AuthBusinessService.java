@@ -1,10 +1,11 @@
 package com.webperside.courseerpbackend.services.security;
 
+import com.webperside.courseerpbackend.models.common.proceedkey.ProceedKey;
 import com.webperside.courseerpbackend.models.payload.auth.LoginPayload;
 import com.webperside.courseerpbackend.models.payload.auth.RefreshTokenPayload;
-import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
-import com.webperside.courseerpbackend.models.payload.otp.BaseOTPChannelRequest;
-import com.webperside.courseerpbackend.models.payload.otp.BaseOTPRequest;
+import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpPayload;
+import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpOTPChannelRequest;
+import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpOTPRequest;
 import com.webperside.courseerpbackend.models.response.auth.LoginResponse;
 
 public interface AuthBusinessService {
@@ -15,11 +16,11 @@ public interface AuthBusinessService {
 
     void logout();
 
-    void signUp(SignUpPayload payload);
+    ProceedKey signUp(SignUpPayload payload);
 
-    void signUpOTP(BaseOTPChannelRequest payload);
+    void signUpOTP(SignUpOTPChannelRequest payload);
 
-    void signUpOTPConfirmation(BaseOTPRequest payload);
+    void signUpOTPConfirmation(SignUpOTPRequest payload);
 
     void setAuthentication(String email);
 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="translations-table" author="ttayping">
+        <createTable tableName="translation_keys">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="key" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="BOOLEAN" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="translation_values">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="key_id" type="BIGINT"/>
+            <column name="value" type="VARCHAR(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language_id" type="BIGINT"/>
+            <column name="is_deleted" type="BOOLEAN" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+
+
+        <addForeignKeyConstraint  baseColumnNames="key_id"
+                                  baseTableName="translation_values"
+                                  constraintName="fk_translation_key_id"
+                                  deferrable="false"
+                                  initiallyDeferred="false"
+                                  onDelete="NO ACTION"
+                                  onUpdate="NO ACTION"
+                                  referencedColumnNames="id"
+                                  referencedTableName="translation_keys"
+                                  validate="true"/>
+
+        <addForeignKeyConstraint  baseColumnNames="language_id"
+                                  baseTableName="translation_values"
+                                  constraintName="fk_translation_language_id"
+                                  deferrable="false"
+                                  initiallyDeferred="false"
+                                  onDelete="NO ACTION"
+                                  onUpdate="NO ACTION"
+                                  referencedColumnNames="id"
+                                  referencedTableName="languages"
+                                  validate="true"/>
+
+    </changeSet>
+</databaseChangeLog>

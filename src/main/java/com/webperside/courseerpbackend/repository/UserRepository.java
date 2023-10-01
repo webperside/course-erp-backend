@@ -11,6 +11,12 @@ public interface UserRepository {
 
     void insert(User user);
 
+    void update(User user);
+
     Optional<User> findByEmail(@Param("email") String email);
+
+    Optional<User> findById(@Param("id") Long id);
+
+    Optional<User> findByPhoneNumber(@Param("phoneNumber") String phoneNumber);
 
 }

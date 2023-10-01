@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.webperside.courseerpbackend.exception.BaseException;
 import com.webperside.courseerpbackend.exception.types.NotFoundExceptionType;
 import com.webperside.courseerpbackend.models.enums.response.ResponseMessages;
-import com.webperside.courseerpbackend.models.enums.response.SuccessResponseMessages;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 
 import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.NOT_FOUND;
+import static com.webperside.courseerpbackend.models.enums.response.SuccessResponseMessages.CREATED;
 import static com.webperside.courseerpbackend.models.enums.response.SuccessResponseMessages.SUCCESS;
 
 @Data
@@ -69,6 +69,16 @@ public class BaseResponse <T> {
         return success(null);
     }
 
+    public static <T> BaseResponse<T> created(T data) {
+        return BaseResponse.<T>builder()
+                .status(HttpStatus.CREATED)
+                .data(data)
+                .meta(Meta.of(CREATED))
+                .build();
+    }
+    public static <T> BaseResponse<T> created() {
+        return created(null);
+    }
     public static BaseResponse<?> error(BaseException ex) {
         return BaseResponse.builder()
                 .meta(Meta.of(ex))

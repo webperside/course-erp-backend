@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.webperside.courseerpbackend.repository.LangugaeRepository">
+<mapper namespace="com.webperside.courseerpbackend.repository.LanguageRepository">
 
     <select id="findAll" resultType="Language">
         SELECT
@@ -17,19 +17,20 @@
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-        INSERT INTO languages (name)
-        VALUES (#{name})
+        INSERT INTO languages (name, has_localization)
+        VALUES (#{name}, #{hasLocalization})
     </insert>
 
     <update id="update" parameterType="Language">
         UPDATE languages l
-        SET name = #{name}
+        SET name = #{name}, has_localization = #{hasLocalization}
         WHERE l.id = #{id};
     </update>
 
     <sql id="languageBaseColumns">
         l.id,
         l.name,
+        l.has_localization,
         l.is_deleted
     </sql>
 
