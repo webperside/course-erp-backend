@@ -3,12 +3,8 @@ package com.webperside.courseerpbackend.controller;
 import com.webperside.courseerpbackend.models.base.BaseResponse;
 import com.webperside.courseerpbackend.models.payload.student.StudentPayload;
 import com.webperside.courseerpbackend.services.student.StudentBusinessService;
-import com.webperside.courseerpbackend.services.student.StudentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/students")
@@ -21,5 +17,12 @@ public class StudentController {
         studentBusinessService.addStudent(studentPayload);
         return BaseResponse.success();
 
+    }
+
+    @PostMapping("/{id}/groups/{groupId}")
+    public BaseResponse<Void> addStudentToGroup(@PathVariable("id") long studentId,
+                                                @PathVariable("groupId") long groupId){
+        studentBusinessService.addStudentToGroup(studentId, groupId);
+        return BaseResponse.success();
     }
 }

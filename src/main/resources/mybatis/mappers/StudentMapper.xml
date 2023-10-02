@@ -7,6 +7,11 @@
         VALUES (#{userId})
     </insert>
 
+    <insert id="addStudentToGroup" useGeneratedKeys="true">
+        INSERT INTO students_groups (student_id, group_id)
+        VALUES (#{studentId}, #{groupId})
+    </insert>
+
     <select id="findById" resultType="Student">
         SELECT
         <include refid="studentBaseColumns"/>
@@ -14,6 +19,11 @@
         WHERE s.id = #{id} and s.is_deleted = false
     </select>
 
+    <select id="checkStudentById" resultType="Boolean">
+        SELECT COUNT(*) > 0
+        FROM students_groups sg
+        WHERE sg.student_id = #{studentId}
+    </select>
 
     <select id="findAll" resultType="Student">
         SELECT
