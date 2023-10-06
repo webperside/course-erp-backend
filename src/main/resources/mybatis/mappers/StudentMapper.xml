@@ -7,7 +7,7 @@
         VALUES (#{userId})
     </insert>
 
-    <insert id="addStudentToGroup" useGeneratedKeys="true">
+    <insert id="addStudentToGroup">
         INSERT INTO students_groups (student_id, group_id)
         VALUES (#{studentId}, #{groupId})
     </insert>
@@ -19,7 +19,7 @@
         WHERE s.id = #{id} and s.is_deleted = false
     </select>
 
-    <select id="checkStudentById" resultType="Boolean">
+    <select id="checkStudentAlreadyAddedToGroup" resultType="Boolean">
         SELECT COUNT(*) > 0
         FROM students_groups sg
         WHERE sg.student_id = #{studentId}

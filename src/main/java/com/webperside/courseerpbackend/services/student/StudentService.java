@@ -19,6 +19,6 @@ public interface StudentService {
     List<Student> findAll();
 
     void addStudentToGroup(@Param("id") long id, @Param("groupId") long groupId);
-    boolean checkByStudentId(long id);
+    boolean checkStudentAlreadyAddedToGroup(long id);
 
 }

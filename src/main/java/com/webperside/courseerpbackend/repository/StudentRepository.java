@@ -20,5 +20,5 @@ public interface StudentRepository {
 
     void addStudentToGroup(@Param("studentId") long studentId, @Param("groupId") long groupId);
 
-    boolean checkStudentById(@Param("studentId") long studentId);
+    boolean checkStudentAlreadyAddedToGroup(@Param("studentId") long studentId);
 }

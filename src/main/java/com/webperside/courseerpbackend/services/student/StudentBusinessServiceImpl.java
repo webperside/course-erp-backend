@@ -5,6 +5,8 @@ import static com.webperside.courseerpbackend.models.enums.response.ErrorRespons
 import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.STUDENT_ALREADY_ADDED_TO_GROUP;
 
 import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
+import com.webperside.courseerpbackend.models.mybatis.appConfigs.AppConfig;
+import com.webperside.courseerpbackend.models.mybatis.group.Group;
 import com.webperside.courseerpbackend.models.mybatis.role.Role;
 import com.webperside.courseerpbackend.models.mybatis.student.Student;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
@@ -23,6 +25,7 @@ import org.springframework.stereotype.Service;
 public class StudentBusinessServiceImpl implements StudentBusinessService {
     private final UserService userService;
     private final StudentService studentService;
+    private final GroupService groupService;
     private final RoleService roleService;
     private final BCryptPasswordEncoder passwordEncoder;
     private static final String PASSWORD = "123456789";
@@ -54,7 +57,11 @@ public class StudentBusinessServiceImpl implements StudentBusinessService {
 
     @Override
     public void addStudentToGroup(long studentId, long groupId) {
-        if(studentService.checkByStudentId(studentId)){
+
+        studentService.findById(studentId);
+        groupService.findById(groupId);
+
+        if(studentService.checkStudentAlreadyAddedToGroup(studentId)){
             throw BaseException.of(STUDENT_ALREADY_ADDED_TO_GROUP);
         }
 

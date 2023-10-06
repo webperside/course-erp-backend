@@ -44,8 +44,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public boolean checkByStudentId(long id) {
-        return studentRepository.checkStudentById(id);
+    public boolean checkStudentAlreadyAddedToGroup(long id) {
+        return studentRepository.checkStudentAlreadyAddedToGroup(id);
     }
 
 
