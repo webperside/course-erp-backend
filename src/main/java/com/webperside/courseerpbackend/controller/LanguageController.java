@@ -15,17 +15,15 @@ public class LanguageController {
 
     private final LanguageService languageService;
 
-    private static final LanguageEntityMapper languageEntityMapper = LanguageEntityMapper.INSTANCE;
 
     @PostMapping
     public BaseResponse<Void> insert(@RequestBody LanguagePayLoad languagePayLoad){
-        Language language = languageEntityMapper.toEntity(languagePayLoad);
-        languageService.insert(language);
+        languageService.insert(LanguageEntityMapper.INSTANCE.toEntity(languagePayLoad));
         return BaseResponse.success();
     }
     @PutMapping("/{id}")
     public BaseResponse<Void> update(@PathVariable("id") long id, @RequestBody LanguagePayLoad languagePayLoad){
-        languageService.update(languageEntityMapper.toEntity(languagePayLoad, id));
+        languageService.update(LanguageEntityMapper.INSTANCE.toEntity(languagePayLoad, id));
         return BaseResponse.success();
     }
 }
