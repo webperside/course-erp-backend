@@ -1,9 +1,11 @@
 package com.webperside.courseerpbackend.services.security;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.models.common.proceedkey.ProceedKey;
 import com.webperside.courseerpbackend.models.dto.RefreshTokenDto;
 import com.webperside.courseerpbackend.models.dto.SendOTPDto;
 import com.webperside.courseerpbackend.models.enums.branch.BranchStatus;
+import com.webperside.courseerpbackend.models.enums.user.UserStatus;
 import com.webperside.courseerpbackend.models.mappers.CourseEntityMapper;
 import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
 import com.webperside.courseerpbackend.models.mybatis.branch.Branch;
@@ -13,17 +15,21 @@ import com.webperside.courseerpbackend.models.mybatis.role.Role;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.models.payload.auth.LoginPayload;
 import com.webperside.courseerpbackend.models.payload.auth.RefreshTokenPayload;
-import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
-import com.webperside.courseerpbackend.models.payload.otp.BaseOTPChannelRequest;
-import com.webperside.courseerpbackend.models.payload.otp.BaseOTPRequest;
+import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpPayload;
+import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpOTPChannelRequest;
+import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpOTPRequest;
 import com.webperside.courseerpbackend.models.response.auth.LoginResponse;
 import com.webperside.courseerpbackend.services.branch.BranchService;
 import com.webperside.courseerpbackend.services.course.CourseService;
 import com.webperside.courseerpbackend.services.employee.EmployeeService;
 import com.webperside.courseerpbackend.services.otp.OTPFactory;
+import com.webperside.courseerpbackend.services.otp.OTPProceedTokenManager;
+import com.webperside.courseerpbackend.services.redis.RedisService;
 import com.webperside.courseerpbackend.services.role.RoleService;
 import com.webperside.courseerpbackend.services.user.UserService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,20 +45,23 @@ import static com.webperside.courseerpbackend.models.enums.response.ErrorRespons
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthBusinessServiceImpl implements AuthBusinessService {
 
-    private final static String BRANCH_NAME_DEFAULT_PATTERN = "%s Default Branch";
+    final static String BRANCH_NAME_DEFAULT_PATTERN = "%s Default Branch";
 
-    private final AuthenticationManager authenticationManager;
-    private final AccessTokenManager accessTokenManager;
-    private final RefreshTokenManager refreshTokenManager;
-    private final UserService userService;
-    private final UserDetailsService userDetailsService;
-    private final BCryptPasswordEncoder passwordEncoder;
-    private final RoleService roleService;
-    private final CourseService courseService;
-    private final BranchService branchService;
-    private final EmployeeService employeeService;
+    final AuthenticationManager authenticationManager;
+    final AccessTokenManager accessTokenManager;
+    final RefreshTokenManager refreshTokenManager;
+    final UserService userService;
+    final UserDetailsService userDetailsService;
+    final BCryptPasswordEncoder passwordEncoder;
+    final RoleService roleService;
+    final CourseService courseService;
+    final BranchService branchService;
+    final EmployeeService employeeService;
+    final OTPProceedTokenManager otpProceedTokenManager;
+    final RedisService redisService;
 
     @Override
     public LoginResponse login(LoginPayload payload) {
@@ -77,7 +86,7 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
     }
 
     @Override
-    public void signUp(SignUpPayload payload) {
+    public ProceedKey signUp(SignUpPayload payload) {
 
         if (userService.checkByEmail(payload.getEmail())) {
             throw BaseException.of(EMAIL_ALREADY_REGISTERED);
@@ -112,18 +121,28 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
         5. verification otp +
         6. login - if user is not confirmed, can't login system
          */
-
+        return ProceedKey.builder().proceedKey(otpProceedTokenManager.generate(user)).build();
     }
 
     @Override
-    public void signUpOTP(BaseOTPChannelRequest payload) {
+    public void signUpOTP(SignUpOTPChannelRequest payload) {
         // TODO: OTP processing
-        OTPFactory.handle(payload.getChannel()).send(SendOTPDto.of("user1@gmail.com", "otpsignup-1"));
+        User user = userService.getById(otpProceedTokenManager.getId(payload.getProceedKey()));
+        OTPFactory.handle(payload.getChannel()).send(
+                SendOTPDto.of(payload.getChannel().getTarget(user), String.format("otpsignup-%s", user.getId()))
+        );
     }
 
     @Override
-    public void signUpOTPConfirmation(BaseOTPRequest payload) {
-        log.info(payload.getOtp() + " confirmed!");
+    public void signUpOTPConfirmation(SignUpOTPRequest payload) {
+        User user = userService.getById(otpProceedTokenManager.getId(payload.getProceedKey()));
+        final String otp = redisService.get(String.format("otpsignup-%s", user.getId()));
+        if (payload.getOtp().equals(otp)) {
+            user.setStatus(UserStatus.ACTIVE);
+            userService.update(user);
+            log.info("User confirmed!");
+        }
+        // OTP NOT FOUND
     }
 
     @Override

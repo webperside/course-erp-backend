@@ -19,6 +19,7 @@
     <include file="migrations/1.0/1.1.2-app-configs-table.xml"/>
     <include file="migrations/1.0/1.1.3-user-configs-table.xml"/>
     <include file="migrations/1.0/1.1.4-students-groups-table.xml"/>
+    <include file="migrations/1.0/1.1.5-translations.xml"/>
     <include file="migrations/1.0/1.1.6-alter-students-groups-table.xml"/>
 
 </databaseChangeLog>

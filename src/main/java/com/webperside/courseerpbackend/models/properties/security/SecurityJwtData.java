@@ -6,7 +6,7 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class JwtData {
+public class SecurityJwtData {
 
     String publicKey;
     String privateKey;

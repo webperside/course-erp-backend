@@ -1,4 +1,4 @@
-package com.webperside.courseerpbackend.models.properties.security;
+package com.webperside.courseerpbackend.models.properties.otp;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -8,10 +8,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@ConfigurationProperties("security")
+@ConfigurationProperties("otp")
 @Configuration
-public class SecurityProperties {
+public class OTPProperties {
 
-    SecurityJwtData jwt;
+    OTPJwtData jwt;
+    Integer validityTime;
+
 
 }

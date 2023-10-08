@@ -14,7 +14,9 @@ import com.webperside.courseerpbackend.models.payload.student.StudentPayload;
 import com.webperside.courseerpbackend.services.group.GroupService;
 import com.webperside.courseerpbackend.services.role.RoleService;
 import com.webperside.courseerpbackend.services.user.UserService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,13 +24,14 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class StudentBusinessServiceImpl implements StudentBusinessService {
-    private final UserService userService;
-    private final StudentService studentService;
-    private final GroupService groupService;
-    private final RoleService roleService;
-    private final BCryptPasswordEncoder passwordEncoder;
-    private static final String PASSWORD = "123456789";
+    final UserService userService;
+    final StudentService studentService;
+    final GroupService groupService;
+    final RoleService roleService;
+    final BCryptPasswordEncoder passwordEncoder;
+    static final String PASSWORD = "123456789";
 
 
     //todo:Assign process for groups

@@ -1,4 +1,4 @@
-package com.webperside.courseerpbackend.models.payload.otp;
+package com.webperside.courseerpbackend.models.payload.language;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,8 +8,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BaseOTPRequest {
+public class LanguagePayLoad {
 
-    private String otp;
-
+    String name;
 }

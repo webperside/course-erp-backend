@@ -1,35 +1,16 @@
 package com.webperside.courseerpbackend;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.webperside.courseerpbackend.models.enums.course.CourseStatus;
-import com.webperside.courseerpbackend.models.enums.user.UserStatus;
-import com.webperside.courseerpbackend.models.mappers.CourseEntityMapper;
 import com.webperside.courseerpbackend.models.mybatis.country.Country;
-import com.webperside.courseerpbackend.models.mybatis.course.Course;
-import com.webperside.courseerpbackend.models.mybatis.language.Language;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
-import com.webperside.courseerpbackend.models.payload.auth.SignUpPayload;
-import com.webperside.courseerpbackend.models.properties.security.SecurityProperties;
-import com.webperside.courseerpbackend.repository.UserRepository;
 import com.webperside.courseerpbackend.services.country.CountryService;
-import com.webperside.courseerpbackend.services.course.CourseService;
-import com.webperside.courseerpbackend.services.language.LanguageService;
+import com.webperside.courseerpbackend.services.otp.OTPProceedTokenManager;
 import com.webperside.courseerpbackend.services.security.AccessTokenManager;
-import com.webperside.courseerpbackend.services.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.PublicKey;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 @SpringBootApplication
@@ -45,8 +26,10 @@ public class CourseErpBackendApplication implements CommandLineRunner {
     private final AccessTokenManager accessTokenManager;
     private final CountryService countryService;
 
+    private final OTPProceedTokenManager otpProceedTokenManager;
     @Override
     public void run(String... args) throws Exception {
+        System.out.println(otpProceedTokenManager.generate(User.builder().id(1L).name("sdfsdf").build()));
 //		User user = User.builder()
 //				.name("Test")
 //				.surname("test")

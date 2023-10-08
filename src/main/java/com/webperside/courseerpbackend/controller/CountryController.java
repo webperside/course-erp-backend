@@ -6,7 +6,6 @@ import com.webperside.courseerpbackend.models.mybatis.country.Country;
 import com.webperside.courseerpbackend.models.payload.country.CountryPayload;
 import com.webperside.courseerpbackend.services.country.CountryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
