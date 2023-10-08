@@ -14,18 +14,16 @@ import org.springframework.web.bind.annotation.*;
 public class CountryController {
 
     private final CountryService countryService;
-    private static final CountryEntityMapper countryEntityMapper = CountryEntityMapper.INSTANCE;
 
     @PostMapping
     public BaseResponse<Void> insert(@RequestBody CountryPayload countryPayload){
-        Country country = countryEntityMapper.toEntity(countryPayload);
-        countryService.insert(country);
+        countryService.insert(CountryEntityMapper.INSTANCE.toEntity(countryPayload));
         return BaseResponse.success();
     }
 
     @PutMapping("/{id}")
     public BaseResponse<Void> update(@PathVariable("id") long id, @RequestBody CountryPayload countryPayload){
-        countryService.update(countryEntityMapper.toEntity(countryPayload, id));
+        countryService.update(CountryEntityMapper.INSTANCE.toEntity(countryPayload, id));
         return BaseResponse.success();
     }
 
