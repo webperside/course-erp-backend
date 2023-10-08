@@ -38,5 +38,15 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll();
     }
 
+    @Override
+    public void addStudentToGroup(long id, long groupId) {
+        studentRepository.addStudentToGroup(id, groupId);
+    }
+
+    @Override
+    public boolean checkStudentAlreadyAddedToGroup(long id) {
+        return studentRepository.checkStudentAlreadyAddedToGroup(id);
+    }
+
 
 }

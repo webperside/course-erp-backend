@@ -1,7 +1,6 @@
 package com.webperside.courseerpbackend.services.student;
 
 import com.webperside.courseerpbackend.models.mybatis.student.Student;
-
 import java.util.List;
 
 
@@ -13,5 +12,8 @@ public interface StudentService {
     Student findById(Long id);
 
     List<Student> findAll();
+
+    void addStudentToGroup(long id, long groupId);
+    boolean checkStudentAlreadyAddedToGroup(long id);
 
 }

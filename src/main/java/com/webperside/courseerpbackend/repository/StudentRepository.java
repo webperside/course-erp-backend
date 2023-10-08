@@ -2,6 +2,7 @@ package com.webperside.courseerpbackend.repository;
 
 import com.webperside.courseerpbackend.models.mybatis.student.Student;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,4 +17,8 @@ public interface StudentRepository {
     Optional<Student> findById(Long id);
 
     List<Student> findAll();
+
+    void addStudentToGroup(@Param("studentId") long studentId, @Param("groupId") long groupId);
+
+    boolean checkStudentAlreadyAddedToGroup(@Param("studentId") long studentId);
 }
