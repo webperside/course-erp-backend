@@ -1,5 +1,6 @@
 package com.webperside.courseerpbackend.services.security;
 
+import com.webperside.courseerpbackend.constants.OTPConstants;
 import com.webperside.courseerpbackend.exception.BaseException;
 import com.webperside.courseerpbackend.models.common.proceedkey.ProceedKey;
 import com.webperside.courseerpbackend.models.dto.RefreshTokenDto;
@@ -129,14 +130,14 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
         // TODO: OTP processing
         User user = userService.getById(otpProceedTokenManager.getId(payload.getProceedKey()));
         OTPFactory.handle(payload.getChannel()).send(
-                SendOTPDto.of(payload.getChannel().getTarget(user), String.format("otpsignup-%s", user.getId()))
+                SendOTPDto.of(payload.getChannel().getTarget(user), String.format(OTPConstants.SIGN_UP, user.getId()))
         );
     }
 
     @Override
     public void signUpOTPConfirmation(SignUpOTPRequest payload) {
         User user = userService.getById(otpProceedTokenManager.getId(payload.getProceedKey()));
-        final String otp = redisService.get(String.format("otpsignup-%s", user.getId()));
+        final String otp = redisService.get(String.format(OTPConstants.SIGN_UP, user.getId()));
         if (payload.getOtp().equals(otp)) {
             user.setStatus(UserStatus.ACTIVE);
             userService.update(user);
