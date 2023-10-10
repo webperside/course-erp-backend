@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="insert-default-languages" author="ershadteymurov">
+        <insert tableName="languages">
+            <column name="name" value="lang_az"/>
+            <column name="is_default" value="1"/>
+            <column name="icon" value="lang_az"/>
+        </insert>
+
+        <insert tableName="languages">
+            <column name="name" value="lang_en"/>
+            <column name="icon" value="lang_en"/>
+        </insert>
+
+        <insert tableName="languages">
+            <column name="name" value="lang_ru"/>
+            <column name="icon" value="lang_ru"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

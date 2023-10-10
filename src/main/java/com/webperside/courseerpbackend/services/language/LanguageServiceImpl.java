@@ -34,4 +34,14 @@ public class LanguageServiceImpl implements LanguageService {
         languageRepository.update(language);
 
     }
+
+    @Override
+    public Boolean isDefault(Long id) {
+        return findById(id).getIsDefault();
+    }
+
+    @Override
+    public Boolean hasLocalization(Long id) {
+        return findById(id).getHasLocalization();
+    }
 }

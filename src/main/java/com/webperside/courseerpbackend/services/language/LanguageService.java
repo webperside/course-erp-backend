@@ -11,4 +11,6 @@ public interface LanguageService {
     Language findById(Long id);
     void update (Language language);
 
+    Boolean isDefault(Long Id);
+    Boolean hasLocalization(Long id);
 }
