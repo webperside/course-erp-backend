@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="teachers-schedule-table" author="Tahir">
+        <createTable tableName="teachers_schedule">
+            <column name="teacher_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="branch_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="day_of_week" type="VARCHAR(10)" />
+            <column name="start_time" type="TIME" />
+            <column name="end_time" type="TIME" />
+            <column name="is_deleted" type="BOOLEAN" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint  baseColumnNames="teacher_id"
+                                  baseTableName="teachers_schedule"
+                                  constraintName="fk_teacher_teachers_schedule_id"
+                                  deferrable="false"
+                                  initiallyDeferred="false"
+                                  onDelete="NO ACTION"
+                                  onUpdate="NO ACTION"
+                                  referencedColumnNames="id"
+                                  referencedTableName="teachers"
+                                  validate="true"/>
+
+        <addForeignKeyConstraint  baseColumnNames="branch_id"
+                                  baseTableName="teachers_schedule"
+                                  constraintName="fk_branch_teachers_schedule_id"
+                                  deferrable="false"
+                                  initiallyDeferred="false"
+                                  onDelete="NO ACTION"
+                                  onUpdate="NO ACTION"
+                                  referencedColumnNames="id"
+                                  referencedTableName="branches"
+                                  validate="true"/>
+
+    </changeSet>
+</databaseChangeLog>
