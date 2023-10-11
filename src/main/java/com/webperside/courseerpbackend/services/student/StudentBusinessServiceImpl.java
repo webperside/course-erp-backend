@@ -1,12 +1,7 @@
 package com.webperside.courseerpbackend.services.student;
 
 import com.webperside.courseerpbackend.exception.BaseException;
-import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.PHONE_NUMBER_ALREADY_EXIST;
-import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.STUDENT_ALREADY_ADDED_TO_GROUP;
-
 import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
-import com.webperside.courseerpbackend.models.mybatis.appConfigs.AppConfig;
-import com.webperside.courseerpbackend.models.mybatis.group.Group;
 import com.webperside.courseerpbackend.models.mybatis.role.Role;
 import com.webperside.courseerpbackend.models.mybatis.student.Student;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
@@ -20,6 +15,10 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.PHONE_NUMBER_ALREADY_EXIST;
+import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.STUDENT_ALREADY_ADDED_TO_GROUP;
+import static com.webperside.courseerpbackend.utils.CommonUtils.throwIf;
 
 @Service
 @Slf4j
@@ -38,9 +37,7 @@ public class StudentBusinessServiceImpl implements StudentBusinessService {
     @Override
     public void addStudent(StudentPayload studentPayload) {
 
-        if (userService.checkByPhoneNumber(studentPayload.getPhoneNumber())) {
-            throw BaseException.of(PHONE_NUMBER_ALREADY_EXIST);
-        }
+        throwIf(() -> userService.checkByPhoneNumber(studentPayload.getPhoneNumber()), BaseException.of(PHONE_NUMBER_ALREADY_EXIST));
 
         //todo: we will change ROLE
         Role defaultRole = roleService.getDefaultRole();
@@ -64,9 +61,7 @@ public class StudentBusinessServiceImpl implements StudentBusinessService {
         studentService.findById(studentId);
         groupService.findById(groupId);
 
-        if(studentService.checkStudentAlreadyAddedToGroup(studentId)){
-            throw BaseException.of(STUDENT_ALREADY_ADDED_TO_GROUP);
-        }
+        throwIf(() -> studentService.checkStudentAlreadyAddedToGroup(studentId), BaseException.of(STUDENT_ALREADY_ADDED_TO_GROUP));
 
         studentService.addStudentToGroup(studentId, groupId);
     }

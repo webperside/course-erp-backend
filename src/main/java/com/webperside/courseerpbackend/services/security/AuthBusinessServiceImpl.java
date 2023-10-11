@@ -28,6 +28,7 @@ import com.webperside.courseerpbackend.services.otp.OTPProceedTokenManager;
 import com.webperside.courseerpbackend.services.redis.RedisService;
 import com.webperside.courseerpbackend.services.role.RoleService;
 import com.webperside.courseerpbackend.services.user.UserService;
+import static com.webperside.courseerpbackend.utils.CommonUtils.throwIf;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -89,9 +90,7 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
     @Override
     public ProceedKey signUp(SignUpPayload payload) {
 
-        if (userService.checkByEmail(payload.getEmail())) {
-            throw BaseException.of(EMAIL_ALREADY_REGISTERED);
-        }
+        throwIf(()-> userService.checkByEmail(payload.getEmail()), BaseException.of(EMAIL_ALREADY_REGISTERED));
 
         Role defaultRole = roleService.getDefaultRole();
 

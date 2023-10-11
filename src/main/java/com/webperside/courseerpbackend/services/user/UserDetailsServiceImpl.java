@@ -1,7 +1,6 @@
 package com.webperside.courseerpbackend.services.user;
 
 import com.webperside.courseerpbackend.exception.BaseException;
-import com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.models.security.LoggedInUserDetails;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +11,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+
+import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.USER_NOT_ACTIVE;
+import static com.webperside.courseerpbackend.utils.CommonUtils.throwIf;
 
 @Service
 @Slf4j
@@ -27,9 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         User user = userService.getByEmail(username);
 
-        if (!user.isActive()) {
-            throw BaseException.of(ErrorResponseMessages.USER_NOT_ACTIVE);
-        }
+        throwIf(()-> !user.isActive(),BaseException.of(USER_NOT_ACTIVE));
 
         return new LoggedInUserDetails(
                 user.getEmail(), user.getPassword(), new ArrayList<>()
