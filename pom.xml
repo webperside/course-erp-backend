@@ -22,9 +22,8 @@
 		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 		<io.jsonwebtoken.jjwt.version>0.11.5</io.jsonwebtoken.jjwt.version>
 		<org.redisson.redisson-spring-boot-starter>3.23.4</org.redisson.redisson-spring-boot-starter>
-		<junit.version>4.13.1</junit.version>
-		<mockito-core.version>3.11.2</mockito-core.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -127,21 +126,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- JUnit -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- Mockito -->
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>${mockito-core.version}</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
