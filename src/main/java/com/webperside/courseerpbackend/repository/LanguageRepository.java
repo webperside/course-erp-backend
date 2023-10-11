@@ -13,4 +13,6 @@ public interface LanguageRepository {
     List<Language> findAll();
     Optional<Language> findById(@Param("id") Long id);
     void update(Language language);
+
+    Optional<Language> getDefaultLanguage();
 }
