@@ -14,5 +14,7 @@ import lombok.experimental.SuperBuilder;
 public class Language extends BaseEntity<Long> {
 
     String name;
+    String icon;
     Boolean hasLocalization;
+    Boolean isDefault;
 }

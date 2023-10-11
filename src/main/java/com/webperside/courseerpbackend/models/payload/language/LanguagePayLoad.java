@@ -11,4 +11,5 @@ import lombok.experimental.FieldDefaults;
 public class LanguagePayLoad {
 
     String name;
+    String icon;
 }

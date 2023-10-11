@@ -8,12 +8,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class LanguageServiceImpl implements LanguageService {
 
     private final LanguageRepository languageRepository;
+
     @Override
     public void insert(Language language) {
         languageRepository.insert(language);
@@ -26,7 +28,7 @@ public class LanguageServiceImpl implements LanguageService {
 
     @Override
     public Language findById(Long id) {
-        return languageRepository.findById(id).orElseThrow(()-> BaseException.notFound(Language.class.getSimpleName(),"language", String.valueOf(id)));
+        return languageRepository.findById(id).orElseThrow(() -> BaseException.notFound(Language.class.getSimpleName(), "language", String.valueOf(id)));
     }
 
     @Override
@@ -34,4 +36,12 @@ public class LanguageServiceImpl implements LanguageService {
         languageRepository.update(language);
 
     }
+
+    @Override
+    public Language getDefaultLanguage() {
+        return languageRepository.getDefaultLanguage().orElseThrow(
+                BaseException::unexpected
+        );
+    }
+
 }

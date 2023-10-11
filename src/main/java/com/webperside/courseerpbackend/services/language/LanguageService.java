@@ -11,4 +11,5 @@ public interface LanguageService {
     Language findById(Long id);
     void update (Language language);
 
+    Language getDefaultLanguage();
 }

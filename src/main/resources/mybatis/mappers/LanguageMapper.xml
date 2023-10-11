@@ -17,19 +17,28 @@
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-        INSERT INTO languages (name, has_localization)
-        VALUES (#{name}, #{hasLocalization})
+        INSERT INTO languages (name, has_localization, icon)
+        VALUES (#{name}, #{hasLocalization}, #{icon})
     </insert>
+
+    <select id="getDefaultLanguage" resultType="Language">
+        SELECT
+        <include refid="languageBaseColumns"/>
+        FROM languages l
+        WHERE l.is_default = true and l.is_deleted = false
+    </select>
 
     <update id="update" parameterType="Language">
         UPDATE languages l
-        SET name = #{name}, has_localization = #{hasLocalization}
+        SET name = #{name}, has_localization = #{hasLocalization}, icon = #{icon}
         WHERE l.id = #{id};
     </update>
 
     <sql id="languageBaseColumns">
         l.id,
         l.name,
+        l.icon,
+        l.is_default,
         l.has_localization,
         l.is_deleted
     </sql>
