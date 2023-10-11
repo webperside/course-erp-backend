@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatit.org//DTD Mapper 3.0//EN" "http://mybatit.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.webperside.courseerpbackend.repository.TeacherRepository">
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO teachers (user_id)
+        VALUES (#{userId})
+    </insert>
+
+    <update id="update" parameterType="Teacher">
+        UPDATE teachers t
+        SET user_id = #{userId}
+        WHERE t.id = #{id};
+    </update>
+
+    <select id="findById" resultType="Teacher">
+        SELECT
+        <include refid="teacherBaseColumns"/>
+        FROM teachers t
+        WHERE t.id = #{id} and t.is_deleted = false
+    </select>
+    
+    <select id="findAll" resultType="Teacher">
+        SELECT
+        <include refid="teacherBaseColumns"/>
+        FROM teachers t
+        WHERE t.is_deleted = false
+    </select>
+
+    <sql id="teacherBaseColumns">
+        t.id,
+        t.user_id,
+        t.is_deleted
+    </sql>
+</mapper>
