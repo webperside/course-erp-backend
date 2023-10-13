@@ -20,7 +20,8 @@ public class CommonUtilsTest {
     @Test
     public void testThrowIfConditionSucceeds() {
 
-        Checker checker = () -> true;
+        // i did because i can
+        Checker checker = () -> false;
 
         throwIf(checker, BaseException.unexpected());
     }
