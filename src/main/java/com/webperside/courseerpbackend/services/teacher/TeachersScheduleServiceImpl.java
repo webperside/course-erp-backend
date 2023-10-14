@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -30,7 +30,7 @@ public class TeachersScheduleServiceImpl implements TeachersScheduleService {
     }
 
     @Override
-    public Collection<TeachersSchedule> findAll() {
+    public List<TeachersSchedule> findAll() {
         return teachersScheduleRepository.findAll();
     }
 

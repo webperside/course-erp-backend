@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.models.mybatis.teacher;
 
 
+import com.webperside.courseerpbackend.models.enums.common.DaysOfWeek;
 import com.webperside.courseerpbackend.models.mybatis.base.BaseEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TeachersSchedule extends BaseEntity<Long> {
     Long branchId;
-    String dayOfWeek;
+    DaysOfWeek dayOfWeek;
     LocalDateTime startTime;
     LocalDateTime endTime;
 }

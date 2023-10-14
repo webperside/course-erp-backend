@@ -2,12 +2,14 @@ package com.webperside.courseerpbackend.services.teacher;
 
 import com.webperside.courseerpbackend.models.mybatis.teacher.TeachersSchedule;
 
-import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
 
 public interface TeachersScheduleService {
     void insert(TeachersSchedule teachersSchedule);
+
     TeachersSchedule findById(Long id);
-    Collection<TeachersSchedule> findAll();
+
+    List<TeachersSchedule> findAll();
+
     void update(TeachersSchedule teachersSchedule);
 }
