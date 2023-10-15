@@ -8,6 +8,8 @@ import com.webperside.courseerpbackend.services.language.LanguageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1/languages")
 @RequiredArgsConstructor
@@ -25,5 +27,10 @@ public class LanguageController {
     public BaseResponse<Void> update(@PathVariable("id") long id, @RequestBody LanguagePayLoad languagePayLoad){
         languageService.update(LanguageEntityMapper.INSTANCE.toEntity(languagePayLoad, id));
         return BaseResponse.success();
+    }
+
+    @GetMapping("/localizable")
+    public BaseResponse<List<Language>> getAllLanguagesIsLocalize(){
+        return BaseResponse.success(languageService.getAllLanguagesIsLocalize());
     }
 }

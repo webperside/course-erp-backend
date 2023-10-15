@@ -28,6 +28,13 @@
         WHERE l.is_default = true and l.is_deleted = false
     </select>
 
+    <select id="getAllLanguagesIsLocalize" resultType="Language">
+        SELECT
+        <include refid="languageBaseColumns"/>
+        FROM languages l
+        WHERE l.has_localization = true
+    </select>
+
     <update id="update" parameterType="Language">
         UPDATE languages l
         SET name = #{name}, has_localization = #{hasLocalization}, icon = #{icon}

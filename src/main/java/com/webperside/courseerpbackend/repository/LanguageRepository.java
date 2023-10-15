@@ -15,4 +15,6 @@ public interface LanguageRepository {
     void update(Language language);
 
     Optional<Language> getDefaultLanguage();
+
+    List<Language> getAllLanguagesIsLocalize();
 }
