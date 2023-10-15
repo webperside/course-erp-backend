@@ -13,6 +13,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserConfig extends BaseEntity<String> {
+    String key;
     String value;
     Long userId;
 }

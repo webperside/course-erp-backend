@@ -16,4 +16,7 @@ public interface UserConfigRepository {
     List<UserConfig> findAll();
 
     void update(UserConfig userConfig);
+
+    void updateUserLanguage(@Param("key") String key, @Param("value") String value, @Param("userId") Long userId);
+
 }
