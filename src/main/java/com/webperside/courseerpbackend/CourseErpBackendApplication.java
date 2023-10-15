@@ -5,6 +5,7 @@ import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.services.country.CountryService;
 import com.webperside.courseerpbackend.services.otp.OTPProceedTokenManager;
 import com.webperside.courseerpbackend.services.security.AccessTokenManager;
+import com.webperside.courseerpbackend.services.user.settings.UserSettingsBusinessService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,6 +24,7 @@ public class CourseErpBackendApplication implements CommandLineRunner {
 
 //	private final SecurityProperties securityProperties;
 
+    private final UserSettingsBusinessService userSettingsBusinessService;
     private final AccessTokenManager accessTokenManager;
     private final CountryService countryService;
 
@@ -75,7 +77,10 @@ public class CourseErpBackendApplication implements CommandLineRunner {
 
         // Testing Country Services Methods (Insert, Update, FindById, FindAll)
 //		testingCountryServices();
+
+        userSettingsBusinessService.updateUserDefaultLanguage(1l,"ru");
     }
+
 
     private static String convertToPrivateKey(String key) {
         StringBuilder result = new StringBuilder();
@@ -134,4 +139,5 @@ public class CourseErpBackendApplication implements CommandLineRunner {
         // ------------ FIND by ID Exception not sure how to test
 
     }
+
 }

@@ -90,7 +90,7 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
     @Override
     public ProceedKey signUp(SignUpPayload payload) {
 
-        throwIf(()-> userService.checkByEmail(payload.getEmail()), BaseException.of(EMAIL_ALREADY_REGISTERED));
+        throwIf(()-> !userService.checkByEmail(payload.getEmail()), BaseException.of(EMAIL_ALREADY_REGISTERED));
 
         Role defaultRole = roleService.getDefaultRole();
 
