@@ -14,7 +14,7 @@ import com.webperside.courseerpbackend.models.mybatis.course.Course;
 import com.webperside.courseerpbackend.models.mybatis.employee.Employee;
 import com.webperside.courseerpbackend.models.mybatis.role.Role;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
-import com.webperside.courseerpbackend.models.mybatis.userconfig.UserConfig;
+import com.webperside.courseerpbackend.models.mybatis.userConfig.UserConfig;
 import com.webperside.courseerpbackend.models.payload.auth.LoginPayload;
 import com.webperside.courseerpbackend.models.payload.auth.RefreshTokenPayload;
 import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpOTPChannelRequest;

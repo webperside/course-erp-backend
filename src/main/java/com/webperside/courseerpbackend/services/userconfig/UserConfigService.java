@@ -1,6 +1,6 @@
 package com.webperside.courseerpbackend.services.userconfig;
 
-import com.webperside.courseerpbackend.models.mybatis.userconfig.UserConfig;
+import com.webperside.courseerpbackend.models.mybatis.userConfig.UserConfig;
 
 import java.util.List;
 

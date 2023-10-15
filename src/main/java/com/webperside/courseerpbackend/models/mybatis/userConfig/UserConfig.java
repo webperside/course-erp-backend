@@ -1,4 +1,4 @@
-package com.webperside.courseerpbackend.models.mybatis.userconfig;
+package com.webperside.courseerpbackend.models.mybatis.userConfig;
 
 
 import com.webperside.courseerpbackend.models.mybatis.base.BaseEntity;
