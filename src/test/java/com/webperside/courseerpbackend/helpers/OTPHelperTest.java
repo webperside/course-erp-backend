@@ -1,41 +1,34 @@
-package com.webperside.courseerpbackend.utils;
+package com.webperside.courseerpbackend.helpers;
 
 import com.webperside.courseerpbackend.exception.BaseException;
 import com.webperside.courseerpbackend.services.redis.RedisService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 
 import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.OTP_IS_NOT_VALID;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
-public class OTPUtilsTest {
+public class OTPHelperTest {
 
-    @Mock
     private RedisService mockRedisService;
 
-    private OTPUtils otpUtils;
+    // under test
+    private OTPHelper otpHelper;
 
     @BeforeEach
     public void setUp() {
-
-        MockitoAnnotations.initMocks(this);
-        this.otpUtils = new OTPUtils(this.mockRedisService);
-
+        mockRedisService = mock(RedisService.class);
+        this.otpHelper = new OTPHelper(this.mockRedisService);
     }
 
     @Test
     public void testGenerate() {
 
-        String generatedOTP = OTPUtils.generate();
+        String generatedOTP = otpHelper.generate();
         assertNotNull(generatedOTP);
         assertTrue(generatedOTP.matches("\\d{4}"));
-
     }
 
     @Test
@@ -47,7 +40,7 @@ public class OTPUtilsTest {
         Mockito.when(mockRedisService.get(key)).thenReturn("1234");
 
         try {
-            OTPUtils.isValid(key, otp);
+            otpHelper.isValid(key, otp);
         } catch (Exception e) {
             fail("Validation should pass for a valid OTP");
         }
@@ -63,7 +56,7 @@ public class OTPUtilsTest {
         Mockito.when(mockRedisService.get(key)).thenReturn("1234");
 
         try {
-            OTPUtils.isValid(key, otp);
+            otpHelper.isValid(key, otp);
             fail("Validation should fail for an invalid OTP");
         } catch (Exception e) {
             assertEquals(BaseException.of(OTP_IS_NOT_VALID).getMessage(), e.getMessage());
