@@ -12,4 +12,6 @@ public interface LanguageService {
     void update (Language language);
 
     Language getDefaultLanguage();
+
+    List<Language> getAllLanguagesIsLocalize();
 }
