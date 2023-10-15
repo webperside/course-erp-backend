@@ -3,7 +3,6 @@ package com.webperside.courseerpbackend;
 import com.webperside.courseerpbackend.models.mybatis.country.Country;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.services.country.CountryService;
-import com.webperside.courseerpbackend.services.language.LanguageService;
 import com.webperside.courseerpbackend.services.otp.OTPProceedTokenManager;
 import com.webperside.courseerpbackend.services.security.AccessTokenManager;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,7 @@ public class CourseErpBackendApplication implements CommandLineRunner {
     }
 
 //	private final SecurityProperties securityProperties;
-    private final LanguageService languageService;
+
     private final AccessTokenManager accessTokenManager;
     private final CountryService countryService;
 
@@ -31,7 +30,6 @@ public class CourseErpBackendApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println(otpProceedTokenManager.generate(User.builder().id(1L).name("sdfsdf").build()));
-        System.out.println(languageService.getAllLanguagesIsLocalize());
 //		User user = User.builder()
 //				.name("Test")
 //				.surname("test")
