@@ -1,7 +1,8 @@
-package com.webperside.courseerpbackend.utils;
+package com.webperside.courseerpbackend.helpers;
 
 import com.webperside.courseerpbackend.exception.BaseException;
 import com.webperside.courseerpbackend.services.redis.RedisService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
@@ -9,21 +10,17 @@ import java.util.Random;
 import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.OTP_IS_NOT_VALID;
 
 @Component
-public class OTPUtils {
+@RequiredArgsConstructor
+public class OTPHelper {
 
-    private static RedisService redisService;
+    private final RedisService redisService;
 
-    public OTPUtils(RedisService redisService) {
-        this.redisService = redisService;
-    }
-
-    public static String generate() {
+    public String generate() {
         Random random = new Random();
         return String.format("%04d", random.nextInt(10000));
     }
 
-
-    public static void isValid(String key, String otp) {
+    public void isValid(String key, String otp) {
 
         String storedOtp = redisService.get(key);
 
