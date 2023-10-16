@@ -15,7 +15,6 @@ import lombok.experimental.SuperBuilder;
 public class UserConfig extends BaseEntity<String> {
     String key;
     String value;
+    Long entityId;
     Long userId;
 }
-
-

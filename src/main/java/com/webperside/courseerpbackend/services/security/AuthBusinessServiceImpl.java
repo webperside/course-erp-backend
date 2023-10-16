@@ -12,6 +12,7 @@ import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
 import com.webperside.courseerpbackend.models.mybatis.branch.Branch;
 import com.webperside.courseerpbackend.models.mybatis.course.Course;
 import com.webperside.courseerpbackend.models.mybatis.employee.Employee;
+import com.webperside.courseerpbackend.models.mybatis.language.Language;
 import com.webperside.courseerpbackend.models.mybatis.role.Role;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.models.mybatis.userConfig.UserConfig;
@@ -118,9 +119,11 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
         // Stage 4: Employee insert
         employeeService.insert(Employee.builder().userId(user.getId()).build());
 
+        Language defaultLanguage = languageService.getDefaultLanguage();
         userConfigService.insert(UserConfig.builder()
                 .key(DEFAULT_LANGUAGE)
-                .value(languageService.getDefaultLanguage().getName())
+                .value(defaultLanguage.getName())
+                .entityId(defaultLanguage.getId())
                 .userId(user.getId())
                 .build());
 
