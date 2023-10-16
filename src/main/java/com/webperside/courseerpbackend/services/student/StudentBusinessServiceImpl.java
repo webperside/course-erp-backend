@@ -5,8 +5,6 @@ import static com.webperside.courseerpbackend.models.enums.response.ErrorRespons
 import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.STUDENT_ALREADY_ADDED_TO_GROUP;
 
 import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
-import com.webperside.courseerpbackend.models.mybatis.appConfigs.AppConfig;
-import com.webperside.courseerpbackend.models.mybatis.group.Group;
 import com.webperside.courseerpbackend.models.mybatis.role.Role;
 import com.webperside.courseerpbackend.models.mybatis.student.Student;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
