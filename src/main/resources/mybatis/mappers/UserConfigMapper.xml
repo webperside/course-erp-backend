@@ -41,7 +41,7 @@
         WHERE id = #{id} AND user_id = #{userId} AND is_deleted = false
     </update>
 
-    <select id="findByIdAndValue" resultType="boolean">
+    <select id="findByLangId" resultType="boolean">
         SELECT COUNT(*) > 0
         FROM user_configs
         WHERE value = #{value}
