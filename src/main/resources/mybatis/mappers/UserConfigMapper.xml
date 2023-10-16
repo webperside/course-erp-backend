@@ -38,6 +38,13 @@
     <update id="updateUserLanguage">
         UPDATE user_configs
         SET value = #{value}
-        WHERE key = #{key} AND user_id = #{userId} AND is_deleted = false
+        WHERE id = #{id} AND user_id = #{userId} AND is_deleted = false
     </update>
+
+    <select id="findByIdAndValue" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM user_configs
+        WHERE value = #{value}
+    </select>
+
 </mapper>

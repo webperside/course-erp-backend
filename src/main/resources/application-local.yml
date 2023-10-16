@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/course_erp_db
     username: postgres
-    password: 112233
+    password: postgres
   redis:
     redisson:
       file: classpath:redisson.yml

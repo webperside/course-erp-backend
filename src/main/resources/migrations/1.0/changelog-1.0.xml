@@ -23,7 +23,6 @@
     <include file="migrations/1.0/1.1.6-alter-students-groups-table.xml"/>
     <include file="migrations/1.0/1.1.7-create-teachers-table.xml" />
     <include file="migrations/1.0/1.1.9-alter-language-table.xml"/>
-    <include file="migrations/1.0/1.2.0-alter-user-configs-table.xml"/>
 
     <!-- static data -->
     <include file="migrations/staticdata/SD1-language-data.xml"/>
