@@ -44,4 +44,9 @@ public class LanguageServiceImpl implements LanguageService {
         );
     }
 
+    @Override
+    public List<Language> getAllLanguagesIsLocalize() {
+        return languageRepository.getAllLanguagesIsLocalize();
+    }
+
 }

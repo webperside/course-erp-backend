@@ -10,7 +10,7 @@ public class CommonUtils {
     }
 
     public static void throwIf(Checker checker, BaseException ex) {
-        if (!checker.check()) {
+        if (checker.check()) {
             throw ex;
         }
     }
