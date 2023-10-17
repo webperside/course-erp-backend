@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.webperside.courseerpbackend.repository.TeachersScheduleRepository">
+
+    <select id="findAll" resultType="TeachersSchedule">
+        SELECT
+        <include refid="teacherScheduleBaseColumns"/>
+        FROM teachers_schedule ts
+        WHERE ts.is_deleted=false
+    </select>
+
+    <select id="findById" resultType="TeachersSchedule">
+        SELECT
+        <include refid="teacherScheduleBaseColumns"/>
+        FROM teachers_schedule ts
+        WHERE ts.id = #{id} and ts.is_deleted = false
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO teachers_schedule (branch_id, day_of_week, start_time, end_time)
+        VALUES (#{branchIid}, #{dayOfWeek}, #{startTime}, #{endTime})
+    </insert>
+
+    <update id="update" parameterType="TeachersSchedule">
+        UPDATE teachers_schedule ts
+        SET branch_id = #{branchId}, day_of_week = #{dayOfWeek}, start_time = #{startTime}, end_time = #{endTime}
+        WHERE ts.id = #{id};
+    </update>
+
+    <sql id="teacherScheduleBaseColumns">
+        ts.id,
+        ts.branch_id,
+        ts.day_of_week,
+        ts.start_time,
+        ts.end_time,
+        ts.is_deleted
+    </sql>
+
+</mapper>

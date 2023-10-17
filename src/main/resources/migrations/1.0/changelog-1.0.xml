@@ -22,6 +22,7 @@
     <include file="migrations/1.0/1.1.5-translations.xml"/>
     <include file="migrations/1.0/1.1.6-alter-students-groups-table.xml"/>
     <include file="migrations/1.0/1.1.7-create-teachers-table.xml" />
+    <include file="migrations/1.0/1.1.8-teachers-schedule-table.xml"/>
     <include file="migrations/1.0/1.1.9-alter-language-table.xml"/>
 
     <!-- static data -->
