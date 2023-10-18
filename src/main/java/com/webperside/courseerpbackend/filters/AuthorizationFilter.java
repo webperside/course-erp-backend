@@ -5,8 +5,8 @@ import com.webperside.courseerpbackend.services.security.AccessTokenManager;
 import com.webperside.courseerpbackend.services.security.AuthBusinessService;
 
 import static com.webperside.courseerpbackend.constants.TokenConstants.PREFIX;
-import static com.webperside.courseerpbackend.constants.RequestHeader.USER_ID;
-import static com.webperside.courseerpbackend.constants.RequestHeader.USER_LANGUAGE;
+import static com.webperside.courseerpbackend.constants.RequestConstants.USER_ID;
+import static com.webperside.courseerpbackend.constants.RequestConstants.USER_LANGUAGE;
 
 import com.webperside.courseerpbackend.utils.RequestDataStorage;
 import io.jsonwebtoken.JwtException;
