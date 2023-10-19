@@ -1,4 +1,4 @@
-package com.webperside.courseerpbackend.models.mybatis.appConfigs;
+package com.webperside.courseerpbackend.models.mybatis.appconfig;
 
 import com.webperside.courseerpbackend.models.mybatis.base.BaseEntity;
 import lombok.*;

@@ -1,7 +1,9 @@
-package com.webperside.courseerpbackend.services.appConfigs;
+package com.webperside.courseerpbackend.services.appconfig;
 
 import com.webperside.courseerpbackend.exception.BaseException;
-import com.webperside.courseerpbackend.models.mybatis.appConfigs.AppConfig;
+import com.webperside.courseerpbackend.models.mappers.AppConfigEntityMapper;
+import com.webperside.courseerpbackend.models.mybatis.appconfig.AppConfig;
+import com.webperside.courseerpbackend.models.response.appconfig.AppConfigResponse;
 import com.webperside.courseerpbackend.repository.AppConfigRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,31 +20,25 @@ public class AppConfigServiceImpl implements AppConfigService {
 
     @Override
     public List<AppConfig> findAll() {
-
         return appConfigRepository.findAll();
 
     }
 
     @Override
     public AppConfig findById(Long id) {
-
-        return appConfigRepository.findById(id).orElseThrow(
-                () -> BaseException.notFound(AppConfig.class.getSimpleName(), "app_configs", String.valueOf(id))
-        );
+        return (appConfigRepository.findById(id).orElseThrow(
+                () -> BaseException.notFound(AppConfig.class.getSimpleName(), "app_configs", String.valueOf(id))));
 
     }
 
     @Override
     public void insert(AppConfig appConfig) {
-
         appConfigRepository.insert(appConfig);
 
     }
 
     @Override
     public void update(AppConfig appConfig) {
-
         appConfigRepository.update(appConfig);
-
     }
 }
