@@ -1,4 +1,4 @@
-package com.webperside.courseerpbackend.models.payload.appconfig;
+package com.webperside.courseerpbackend.models.response.appconfig;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -8,7 +8,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AppConfigPayload {
+public class AppConfigResponse {
     String value;
     String description;
 }
