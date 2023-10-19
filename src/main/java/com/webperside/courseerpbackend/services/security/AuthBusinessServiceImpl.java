@@ -28,7 +28,9 @@ import com.webperside.courseerpbackend.services.otp.OTPProceedTokenManager;
 import com.webperside.courseerpbackend.services.redis.RedisService;
 import com.webperside.courseerpbackend.services.role.RoleService;
 import com.webperside.courseerpbackend.services.user.UserService;
+
 import static com.webperside.courseerpbackend.utils.CommonUtils.throwIf;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -90,7 +92,7 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
     @Override
     public ProceedKey signUp(SignUpPayload payload) {
 
-        throwIf(()-> userService.checkByEmail(payload.getEmail()), BaseException.of(EMAIL_ALREADY_REGISTERED));
+        throwIf(() -> userService.checkByEmail(payload.getEmail()), BaseException.of(EMAIL_ALREADY_REGISTERED));
 
         Role defaultRole = roleService.getDefaultRole();
 
@@ -146,12 +148,13 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
     }
 
     @Override
-    public void setAuthentication(String email) {
+    public UserDetails setAuthentication(String email) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
         SecurityContextHolder.getContext().setAuthentication(
                 new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities())
         );
+        return userDetails;
     }
 
     // private util methods

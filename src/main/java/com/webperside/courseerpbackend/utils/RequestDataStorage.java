@@ -12,8 +12,8 @@ import org.springframework.web.context.annotation.RequestScope;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RequestDataStorage {
 
-    String userId;
+    Long userId;
 
-    String userLanguage;
+    String langId;
 
 }

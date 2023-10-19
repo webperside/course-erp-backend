@@ -7,6 +7,7 @@ import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpPayload;
 import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpOTPChannelRequest;
 import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpOTPRequest;
 import com.webperside.courseerpbackend.models.response.auth.LoginResponse;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public interface AuthBusinessService {
 
@@ -22,6 +23,6 @@ public interface AuthBusinessService {
 
     void signUpOTPConfirmation(SignUpOTPRequest payload);
 
-    void setAuthentication(String email);
+    UserDetails setAuthentication(String email);
 
 }
