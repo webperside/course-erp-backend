@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.configs;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.filters.AuthorizationFilter;
 import com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages;
 import jakarta.servlet.ServletException;
@@ -89,7 +90,7 @@ public class SecurityConfig {
         public void commence(HttpServletRequest request,
                              HttpServletResponse response,
                              AuthenticationException authException) throws IOException, ServletException {
-            resolver.resolveException(request, response, null, BaseException.of(ErrorResponseMessages.FORBIDDEN));
+            resolver.resolveException(request, response, null, ExceptionBuilder.of(ErrorResponseMessages.FORBIDDEN));
         }
     }
 }

@@ -2,6 +2,7 @@ package com.webperside.courseerpbackend.services.security;
 
 import com.webperside.courseerpbackend.constants.OTPConstants;
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.common.proceedkey.ProceedKey;
 import com.webperside.courseerpbackend.models.dto.RefreshTokenDto;
 import com.webperside.courseerpbackend.models.dto.SendOTPDto;
@@ -90,7 +91,7 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
     @Override
     public ProceedKey signUp(SignUpPayload payload) {
 
-        throwIf(()-> userService.checkByEmail(payload.getEmail()), BaseException.of(EMAIL_ALREADY_REGISTERED));
+        throwIf(()-> userService.checkByEmail(payload.getEmail()), ExceptionBuilder.of(EMAIL_ALREADY_REGISTERED));
 
         Role defaultRole = roleService.getDefaultRole();
 
@@ -164,7 +165,7 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
         } catch (AuthenticationException e) {
             throw e.getCause() instanceof BaseException ?
                     (BaseException) e.getCause() :
-                    BaseException.unexpected();
+                    ExceptionBuilder.unexpected();
         }
     }
 

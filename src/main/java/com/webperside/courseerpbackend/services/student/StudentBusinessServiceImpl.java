@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.services.student;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
 import com.webperside.courseerpbackend.models.mybatis.role.Role;
 import com.webperside.courseerpbackend.models.mybatis.student.Student;
@@ -37,7 +38,7 @@ public class StudentBusinessServiceImpl implements StudentBusinessService {
     @Override
     public void addStudent(StudentPayload studentPayload) {
 
-        throwIf(() -> userService.checkByPhoneNumber(studentPayload.getPhoneNumber()), BaseException.of(PHONE_NUMBER_ALREADY_EXIST));
+        throwIf(() -> userService.checkByPhoneNumber(studentPayload.getPhoneNumber()), ExceptionBuilder.of(PHONE_NUMBER_ALREADY_EXIST));
 
         //todo: we will change ROLE
         Role defaultRole = roleService.getDefaultRole();
@@ -61,7 +62,7 @@ public class StudentBusinessServiceImpl implements StudentBusinessService {
         studentService.findById(studentId);
         groupService.findById(groupId);
 
-        throwIf(() -> studentService.checkStudentAlreadyAddedToGroup(studentId), BaseException.of(STUDENT_ALREADY_ADDED_TO_GROUP));
+        throwIf(() -> studentService.checkStudentAlreadyAddedToGroup(studentId), ExceptionBuilder.of(STUDENT_ALREADY_ADDED_TO_GROUP));
 
         studentService.addStudentToGroup(studentId, groupId);
     }

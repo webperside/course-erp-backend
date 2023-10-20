@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.services.appConfigs;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.mybatis.appConfigs.AppConfig;
 import com.webperside.courseerpbackend.repository.AppConfigRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class AppConfigServiceImpl implements AppConfigService {
     public AppConfig findById(Long id) {
 
         return appConfigRepository.findById(id).orElseThrow(
-                () -> BaseException.notFound(AppConfig.class.getSimpleName(), "app_configs", String.valueOf(id))
+                () -> ExceptionBuilder.notFound(AppConfig.class.getSimpleName(), "app_configs", String.valueOf(id))
         );
 
     }

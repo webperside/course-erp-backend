@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.services.role;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.mybatis.role.Role;
 import com.webperside.courseerpbackend.repository.RoleRepository;
 import lombok.AccessLevel;
@@ -20,6 +21,6 @@ public class RoleServiceImpl implements RoleService{
 
     @Override
     public Role getDefaultRole() {
-        return roleRepository.findByName(OWNER).orElseThrow(BaseException::unexpected);
+        return roleRepository.findByName(OWNER).orElseThrow(ExceptionBuilder::unexpected);
     }
 }

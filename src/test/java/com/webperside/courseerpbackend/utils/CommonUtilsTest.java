@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.utils;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import org.junit.jupiter.api.Test;
 
 import static com.webperside.courseerpbackend.utils.CommonUtils.Checker;
@@ -14,7 +15,7 @@ public class CommonUtilsTest {
 
         Checker checker = () -> false;
 
-        throwIf(checker, BaseException.unexpected());
+        throwIf(checker, ExceptionBuilder.unexpected());
 
     }
 
@@ -23,7 +24,7 @@ public class CommonUtilsTest {
 
         Checker checker = () -> true;
 
-        assertThrows(BaseException.class, () -> throwIf(checker, BaseException.unexpected()));
+        assertThrows(BaseException.class, () -> throwIf(checker, ExceptionBuilder.unexpected()));
 
     }
 

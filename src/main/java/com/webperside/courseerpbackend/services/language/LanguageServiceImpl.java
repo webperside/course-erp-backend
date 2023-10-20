@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.services.language;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.mybatis.language.Language;
 import com.webperside.courseerpbackend.repository.LanguageRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class LanguageServiceImpl implements LanguageService {
 
     @Override
     public Language findById(Long id) {
-        return languageRepository.findById(id).orElseThrow(() -> BaseException.notFound(Language.class.getSimpleName(), "language", String.valueOf(id)));
+        return languageRepository.findById(id).orElseThrow(() -> ExceptionBuilder.notFound(Language.class.getSimpleName(), "language", String.valueOf(id)));
     }
 
     @Override
@@ -40,7 +41,7 @@ public class LanguageServiceImpl implements LanguageService {
     @Override
     public Language getDefaultLanguage() {
         return languageRepository.getDefaultLanguage().orElseThrow(
-                BaseException::unexpected
+                ExceptionBuilder::unexpected
         );
     }
 

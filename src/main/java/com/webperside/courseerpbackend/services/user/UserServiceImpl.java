@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.services.user;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,14 +29,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(
-                () -> BaseException.notFound(User.class.getSimpleName(), "email", email)
+                () -> ExceptionBuilder.notFound(User.class.getSimpleName(), "email", email)
         );
     }
 
     @Override
     public User getById(Long id) {
         return userRepository.findById(id).orElseThrow(
-                () -> BaseException.notFound(User.class.getSimpleName(), "id", id)
+                () -> ExceptionBuilder.notFound(User.class.getSimpleName(), "id", id)
         );
     }
 

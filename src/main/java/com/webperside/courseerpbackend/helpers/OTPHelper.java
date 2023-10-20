@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.helpers;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.services.redis.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,7 @@ public class OTPHelper {
         String storedOtp = redisService.get(key);
 
         if (storedOtp == null || !storedOtp.equals(otp)) {
-            throw BaseException.of(OTP_IS_NOT_VALID);
+            throw ExceptionBuilder.of(OTP_IS_NOT_VALID);
         }
 
     }

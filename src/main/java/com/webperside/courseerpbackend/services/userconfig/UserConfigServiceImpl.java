@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.services.userconfig;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.mybatis.userconfig.UserConfig;
 import com.webperside.courseerpbackend.repository.UserConfigRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class UserConfigServiceImpl implements UserConfigService {
     @Override
     public UserConfig findByIdAndUserId(String id, Long userId) {
         return userConfigRepository.findByIdAndUserId(id, userId).orElseThrow(
-                () -> BaseException.notFound(UserConfig.class.getSimpleName(),"user_config",String.valueOf(id))
+                () -> ExceptionBuilder.notFound(UserConfig.class.getSimpleName(),"user_config",String.valueOf(id))
         );
     }
 

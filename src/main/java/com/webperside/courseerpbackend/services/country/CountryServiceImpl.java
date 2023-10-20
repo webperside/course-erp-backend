@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.services.country;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.mybatis.country.Country;
 import com.webperside.courseerpbackend.repository.CountryRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class CountryServiceImpl implements CountryService{
     @Override
     public Country findById(long id) {
         return countryRepository.findById(id).orElseThrow(
-                () -> BaseException.notFound(Country.class.getSimpleName(),"country",String.valueOf(id))
+                () -> ExceptionBuilder.notFound(Country.class.getSimpleName(),"country",String.valueOf(id))
         );
     }
 

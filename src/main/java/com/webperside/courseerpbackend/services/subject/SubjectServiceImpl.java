@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.services.subject;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.mybatis.subject.Subject;
 import com.webperside.courseerpbackend.repository.SubjectRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class SubjectServiceImpl implements SubjectService{
     @Override
     public Subject findById(Long id) {
         return subjectRepository.findById(id).orElseThrow(
-                ()-> BaseException.notFound(Subject.class.getSimpleName(),"subject",String.valueOf(id)));
+                ()-> ExceptionBuilder.notFound(Subject.class.getSimpleName(),"subject",String.valueOf(id)));
     }
 
     @Override

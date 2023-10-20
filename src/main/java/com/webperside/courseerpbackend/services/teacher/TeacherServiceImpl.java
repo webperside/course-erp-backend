@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.services.teacher;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.mybatis.teacher.Teacher;
 import com.webperside.courseerpbackend.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class TeacherServiceImpl implements TeacherService{
     @Override
     public Teacher findById(Long id) {
         return teacherRepository.findById(id).orElseThrow(
-                () -> BaseException.notFound(Teacher.class.getSimpleName(), "teacher", String.valueOf(id))
+                () -> ExceptionBuilder.notFound(Teacher.class.getSimpleName(), "teacher", String.valueOf(id))
         );
     }
 

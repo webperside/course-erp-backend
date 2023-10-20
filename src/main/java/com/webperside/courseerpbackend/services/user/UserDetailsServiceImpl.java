@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.services.user;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 import com.webperside.courseerpbackend.models.security.LoggedInUserDetails;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         User user = userService.getByEmail(username);
 
-        throwIf(()-> !user.isActive(),BaseException.of(USER_NOT_ACTIVE));
+        throwIf(()-> !user.isActive(), ExceptionBuilder.of(USER_NOT_ACTIVE));
 
         return new LoggedInUserDetails(
                 user.getEmail(), user.getPassword(), new ArrayList<>()

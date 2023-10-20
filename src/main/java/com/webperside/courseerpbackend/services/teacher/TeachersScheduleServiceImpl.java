@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.services.teacher;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.mybatis.teacher.TeachersSchedule;
 import com.webperside.courseerpbackend.repository.TeachersScheduleRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class TeachersScheduleServiceImpl implements TeachersScheduleService {
     @Override
     public TeachersSchedule findById(Long id) {
         return teachersScheduleRepository.findById(id).orElseThrow(
-                () -> BaseException.notFound(
+                () -> ExceptionBuilder.notFound(
                         TeachersSchedule.class.getSimpleName(),
                         "id",
                         id

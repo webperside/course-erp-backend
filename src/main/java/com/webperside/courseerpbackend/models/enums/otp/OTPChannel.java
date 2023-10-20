@@ -1,6 +1,7 @@
 package com.webperside.courseerpbackend.models.enums.otp;
 
 import com.webperside.courseerpbackend.exception.BaseException;
+import com.webperside.courseerpbackend.exception.ExceptionBuilder;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
 
 public enum OTPChannel {
@@ -12,7 +13,7 @@ public enum OTPChannel {
         } else if (this.equals(EMAIL)) {
             return user.getEmail();
         } else {
-            throw BaseException.unexpected();
+            throw ExceptionBuilder.unexpected();
         }
     }
 }
