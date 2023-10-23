@@ -4,4 +4,6 @@ import com.webperside.courseerpbackend.models.payload.subject.SubjectPayload;
 
 public interface SubjectBusinessService {
     void insertSubject(SubjectPayload subjectPayload);
+
+    void editSubject(long id,SubjectPayload subjectPayload);
 }

@@ -22,4 +22,11 @@ public class SubjectBusinessServiceImpl implements SubjectBusinessService {
         languageService.findById(subjectPayload.getLanguageId());
         subjectService.insert(SubjectEntityMapper.INSTANCE.fromSubjectPayload(subjectPayload, 1L));
     }
+
+    @Override
+    public void editSubject(long id, SubjectPayload subjectPayload) {
+        subjectService.update(SubjectEntityMapper.INSTANCE.toEntity(subjectPayload,id));
+    }
+
+
 }
