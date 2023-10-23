@@ -13,6 +13,7 @@ public enum ErrorResponseMessages implements ResponseMessages {
     EMAIL_ALREADY_REGISTERED("email_already_registered", "Email already registered", HttpStatus.CONFLICT),
     PHONE_NUMBER_ALREADY_EXIST("phone_number_already_exist", "Phone number already exist", HttpStatus.CONFLICT),
     STUDENT_ALREADY_ADDED_TO_GROUP("student_already_added_to_group", "Student already added to group", HttpStatus.CONFLICT),
+    TEACHER_ALREADY_ADDED_TO_GROUP("teacher_already_added_to_group", "Teacher already added to group", HttpStatus.CONFLICT),
     FORBIDDEN("forbidden", "Forbidden", HttpStatus.FORBIDDEN),
     USER_NOT_ACTIVE("user_not_active", "User is not active", HttpStatus.FORBIDDEN),
     OTP_IS_NOT_VALID("otp_is_not_valid", "OTP is not valid", HttpStatus.CONFLICT);

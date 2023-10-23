@@ -13,4 +13,6 @@ public interface TeacherService {
     Teacher findById(Long id);
 
     List<Teacher> findAll();
+
+    boolean checkTeacherAlreadyAddedToGroup(long teacherId);
 }

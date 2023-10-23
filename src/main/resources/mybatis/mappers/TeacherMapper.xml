@@ -27,6 +27,12 @@
         WHERE t.is_deleted = false
     </select>
 
+    <select id="checkTeacherAlreadyAddedToGroup" resultType="Boolean">
+        SELECT COUNT(*) > 0
+        FROM teachers_groups tg
+        WHERE tg.teacher_id = #{teacherId}
+    </select>
+
     <sql id="teacherBaseColumns">
         t.id,
         t.user_id,
