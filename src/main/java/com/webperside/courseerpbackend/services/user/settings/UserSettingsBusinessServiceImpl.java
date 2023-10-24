@@ -5,6 +5,8 @@ import com.webperside.courseerpbackend.exception.BaseException;
 import com.webperside.courseerpbackend.models.mybatis.language.Language;
 import com.webperside.courseerpbackend.repository.LanguageRepository;
 import com.webperside.courseerpbackend.repository.UserConfigRepository;
+import com.webperside.courseerpbackend.services.language.LanguageService;
+import com.webperside.courseerpbackend.services.userconfig.UserConfigService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,17 +16,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserSettingsBusinessServiceImpl implements UserSettingsBusinessService{
 
-    private final UserConfigRepository userConfigRepository;
-    private final LanguageRepository languageRepository;
+    private final LanguageService languageService;
+    private final UserConfigService userConfigService;
+
 
     @Override
     public void updateUserDefaultLanguage(Long userId, String langId) {
 
-       languageRepository.findById(Long.valueOf(langId))
-                .orElseThrow(() ->BaseException.notFound(Language.class.getSimpleName(), "langId", langId));
+        languageService.findById(Long.valueOf(langId));
 
-        userConfigRepository.updateUserLanguage(UserConfigConstants.DEFAULT_LANGUAGE, langId, userId);
-
+        userConfigService.updateUserLanguage(userId,langId);
     }
 }
 

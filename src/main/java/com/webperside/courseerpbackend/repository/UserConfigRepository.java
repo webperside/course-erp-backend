@@ -17,5 +17,5 @@ public interface UserConfigRepository {
 
     void update(UserConfig userConfig);
 
-    void updateUserLanguage(@Param("id") String id, @Param("value") String value, @Param("userId") Long userId);
+    void updateConfig(@Param("id") String id, @Param("value") Object value, @Param("userId") Long userId);
 }
