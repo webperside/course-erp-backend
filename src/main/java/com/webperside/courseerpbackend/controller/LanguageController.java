@@ -4,6 +4,7 @@ import com.webperside.courseerpbackend.models.base.BaseResponse;
 import com.webperside.courseerpbackend.models.mappers.LanguageEntityMapper;
 import com.webperside.courseerpbackend.models.mybatis.language.Language;
 import com.webperside.courseerpbackend.models.payload.language.LanguagePayLoad;
+import com.webperside.courseerpbackend.models.response.language.LanguageResponse;
 import com.webperside.courseerpbackend.services.language.LanguageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class LanguageController {
     }
 
     @GetMapping("/localizable")
-    public BaseResponse<List<Language>> getAllLanguagesIsLocalize(){
-        return BaseResponse.success(languageService.getAllLanguagesIsLocalize());
+    public BaseResponse<List<LanguageResponse>> getAllLanguagesIsLocalize(){
+        return BaseResponse.success(LanguageEntityMapper.INSTANCE.toLocalizeEntity(languageService.getAllLanguagesIsLocalize()));
     }
 }
