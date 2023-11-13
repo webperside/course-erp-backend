@@ -13,4 +13,7 @@ public interface SubjectEntityMapper {
 
     @Mapping(target = "courseId", source = "courseId")
     Subject fromSubjectPayload(SubjectPayload subjectRequestDto, Long courseId);
+
+    @Mapping(source = "id", target="id")
+    Subject toEntity (SubjectPayload subjectPayload, long id);
 }

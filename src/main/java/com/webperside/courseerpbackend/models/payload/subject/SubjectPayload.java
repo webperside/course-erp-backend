@@ -10,5 +10,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SubjectPayload {
     String name;
+
+    Long courseId;
+
     Long languageId;
 }
