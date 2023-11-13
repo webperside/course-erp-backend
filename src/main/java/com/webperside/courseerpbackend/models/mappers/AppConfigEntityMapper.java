@@ -2,10 +2,12 @@ package com.webperside.courseerpbackend.models.mappers;
 
 import com.webperside.courseerpbackend.models.mybatis.appconfig.AppConfig;
 import com.webperside.courseerpbackend.models.response.appconfig.AppConfigResponse;
+import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
+@Mapper
 public interface AppConfigEntityMapper {
 
     AppConfigEntityMapper INSTANCE = Mappers.getMapper(AppConfigEntityMapper.class);

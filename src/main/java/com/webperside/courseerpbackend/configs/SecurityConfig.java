@@ -69,6 +69,8 @@ public class SecurityConfig {
                     request.requestMatchers("/test").authenticated();
                     request.requestMatchers("/test/no-auth").permitAll();
 
+                    // Temporary
+                    request.requestMatchers("/**").authenticated();
                 })
                 .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(eh -> eh.authenticationEntryPoint(authEntryPoint))
@@ -89,6 +91,8 @@ public class SecurityConfig {
         public void commence(HttpServletRequest request,
                              HttpServletResponse response,
                              AuthenticationException authException) throws IOException, ServletException {
+
+            authException.printStackTrace();
             resolver.resolveException(request, response, null, BaseException.of(ErrorResponseMessages.FORBIDDEN));
         }
     }
