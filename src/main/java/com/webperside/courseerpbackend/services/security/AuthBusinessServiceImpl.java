@@ -12,23 +12,26 @@ import com.webperside.courseerpbackend.models.mappers.UserEntityMapper;
 import com.webperside.courseerpbackend.models.mybatis.branch.Branch;
 import com.webperside.courseerpbackend.models.mybatis.course.Course;
 import com.webperside.courseerpbackend.models.mybatis.employee.Employee;
+import com.webperside.courseerpbackend.models.mybatis.language.Language;
 import com.webperside.courseerpbackend.models.mybatis.role.Role;
 import com.webperside.courseerpbackend.models.mybatis.user.User;
+import com.webperside.courseerpbackend.models.mybatis.userConfig.UserConfig;
 import com.webperside.courseerpbackend.models.payload.auth.LoginPayload;
 import com.webperside.courseerpbackend.models.payload.auth.RefreshTokenPayload;
-import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpPayload;
 import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpOTPChannelRequest;
 import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpOTPRequest;
+import com.webperside.courseerpbackend.models.payload.auth.signup.SignUpPayload;
 import com.webperside.courseerpbackend.models.response.auth.LoginResponse;
 import com.webperside.courseerpbackend.services.branch.BranchService;
 import com.webperside.courseerpbackend.services.course.CourseService;
 import com.webperside.courseerpbackend.services.employee.EmployeeService;
+import com.webperside.courseerpbackend.services.language.LanguageService;
 import com.webperside.courseerpbackend.services.otp.OTPFactory;
 import com.webperside.courseerpbackend.services.otp.OTPProceedTokenManager;
 import com.webperside.courseerpbackend.services.redis.RedisService;
 import com.webperside.courseerpbackend.services.role.RoleService;
 import com.webperside.courseerpbackend.services.user.UserService;
-import static com.webperside.courseerpbackend.utils.CommonUtils.throwIf;
+import com.webperside.courseerpbackend.services.userconfig.UserConfigService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -42,7 +45,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import static com.webperside.courseerpbackend.constants.UserConfigConstants.DEFAULT_LANGUAGE;
 import static com.webperside.courseerpbackend.models.enums.response.ErrorResponseMessages.EMAIL_ALREADY_REGISTERED;
+import static com.webperside.courseerpbackend.utils.CommonUtils.throwIf;
 
 @Service
 @RequiredArgsConstructor
@@ -56,7 +61,9 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
     final AccessTokenManager accessTokenManager;
     final RefreshTokenManager refreshTokenManager;
     final UserService userService;
+    final UserConfigService userConfigService;
     final UserDetailsService userDetailsService;
+    final LanguageService languageService;
     final BCryptPasswordEncoder passwordEncoder;
     final RoleService roleService;
     final CourseService courseService;
@@ -111,6 +118,14 @@ public class AuthBusinessServiceImpl implements AuthBusinessService {
 
         // Stage 4: Employee insert
         employeeService.insert(Employee.builder().userId(user.getId()).build());
+
+        Language defaultLanguage = languageService.getDefaultLanguage();
+        userConfigService.insert(UserConfig.builder()
+                .key(DEFAULT_LANGUAGE)
+                .value(defaultLanguage.getName())
+                .entityId(defaultLanguage.getId())
+                .userId(user.getId())
+                .build());
 
         /*
         1. course insert +

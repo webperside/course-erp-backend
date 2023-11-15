@@ -3,8 +3,8 @@
 <mapper namespace="com.webperside.courseerpbackend.repository.UserConfigRepository">
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-        INSERT INTO user_configs (value, user_id)
-        VALUES (#{value}, #{userId})
+        INSERT INTO user_configs (key, value, entity_id, user_id)
+        VALUES (#{key}, #{value}, #{entityId}, #{userId})
     </insert>
 
     <select id="findByIdAndUserId" resultType="UserConfig">
@@ -24,14 +24,20 @@
 
     <sql id="userConfigBaseColumns">
         u.id,
+        u.key,
         u.value,
+        u.entity_id,
         u.user_id,
         u.is_deleted
     </sql>
 
     <update id="update" parameterType="UserConfig">
         UPDATE user_configs u
-        SET value = #{value}, user_id = #{userId}
-        WHERE u.id = #{id} AND user_id = #{userId};
+        SET key     = #{key},
+            value   = #{value},
+            entity_id = #{entityId},
+            user_id = #{userId}
+        WHERE u.id = #{id}
+          AND user_id = #{userId};
     </update>
 </mapper>

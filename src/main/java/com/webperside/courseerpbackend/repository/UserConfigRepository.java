@@ -1,6 +1,6 @@
 package com.webperside.courseerpbackend.repository;
 
-import com.webperside.courseerpbackend.models.mybatis.userconfig.UserConfig;
+import com.webperside.courseerpbackend.models.mybatis.userConfig.UserConfig;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,4 +1,4 @@
-package com.webperside.courseerpbackend.models.mybatis.userconfig;
+package com.webperside.courseerpbackend.models.mybatis.userConfig;
 
 
 import com.webperside.courseerpbackend.models.mybatis.base.BaseEntity;
@@ -13,8 +13,8 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserConfig extends BaseEntity<String> {
+    String key;
     String value;
+    Long entityId;
     Long userId;
 }
-
-

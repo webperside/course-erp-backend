@@ -1,7 +1,7 @@
 package com.webperside.courseerpbackend.services.userconfig;
 
 import com.webperside.courseerpbackend.exception.BaseException;
-import com.webperside.courseerpbackend.models.mybatis.userconfig.UserConfig;
+import com.webperside.courseerpbackend.models.mybatis.userConfig.UserConfig;
 import com.webperside.courseerpbackend.repository.UserConfigRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
