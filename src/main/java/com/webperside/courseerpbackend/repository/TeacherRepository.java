@@ -15,4 +15,6 @@ public interface TeacherRepository {
     Optional<Teacher> findById(Long id);
 
     List<Teacher> findAll();
+
+    boolean checkTeacherAlreadyAddedToGroup(long teacherId);
 }

@@ -37,4 +37,9 @@ public class TeacherServiceImpl implements TeacherService{
     public List<Teacher> findAll() {
         return teacherRepository.findAll();
     }
+
+    @Override
+    public boolean checkTeacherAlreadyAddedToGroup(long teacherId) {
+        return teacherRepository.checkTeacherAlreadyAddedToGroup(teacherId);
+    }
 }
