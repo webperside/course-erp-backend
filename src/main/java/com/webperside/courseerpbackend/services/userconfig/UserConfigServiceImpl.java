@@ -1,5 +1,6 @@
 package com.webperside.courseerpbackend.services.userconfig;
 
+import com.webperside.courseerpbackend.constants.UserConfigConstants;
 import com.webperside.courseerpbackend.exception.BaseException;
 import com.webperside.courseerpbackend.models.mybatis.userconfig.UserConfig;
 import com.webperside.courseerpbackend.repository.UserConfigRepository;
@@ -37,6 +38,15 @@ public class UserConfigServiceImpl implements UserConfigService {
     @Override
     public void update(UserConfig userConfig) {
         userConfigRepository.update(userConfig);
+    }
+
+
+    @Override
+    public void updateUserLanguage(Long userId, String langId) {
+
+        userConfigRepository.updateConfig(UserConfigConstants.DEFAULT_LANGUAGE, langId, userId);
+
+
     }
 
 

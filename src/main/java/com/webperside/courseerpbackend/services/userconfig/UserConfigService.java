@@ -12,4 +12,6 @@ public interface UserConfigService {
     List<UserConfig> findAll();
 
     void update(UserConfig userConfig);
+
+    void updateUserLanguage(Long userId, String langId);
 }

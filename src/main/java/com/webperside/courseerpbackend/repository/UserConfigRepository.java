@@ -16,4 +16,6 @@ public interface UserConfigRepository {
     List<UserConfig> findAll();
 
     void update(UserConfig userConfig);
+
+    void updateConfig(@Param("id") String id, @Param("value") Object value, @Param("userId") Long userId);
 }

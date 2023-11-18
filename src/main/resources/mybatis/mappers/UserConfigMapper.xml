@@ -34,4 +34,11 @@
         SET value = #{value}, user_id = #{userId}
         WHERE u.id = #{id} AND user_id = #{userId};
     </update>
+
+    <update id="updateConfig">
+        UPDATE user_configs
+        SET value = #{value}
+        WHERE id = #{id} AND user_id = #{userId} AND is_deleted = false
+    </update>
+
 </mapper>
